@@ -1,49 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Image Grid Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Image Grid</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             background-color: #f4f4f4;
         }
         h1 {
-            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+            padding: 20px;
+        }
+        .description {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 10px;
-            justify-content: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .image-grid img {
             width: 100%;
             height: auto;
-            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: block;
+        }
+        .image-grid .caption {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #333;
         }
     </style>
 </head>
 <body>
     <h1>My Image Grid</h1>
-    <p>Welcome to my image grid page. Below you will see a collection of 15 images arranged in a 3x5 format.</p>
+    <div class="description">
+        <p>This project showcases a curated selection of images, arranged in a 3x5 grid format. The images are displayed with captions to provide context and information about each visual element. The goal of this project was to present these images in a clean and organized layout, enhancing the overall visual experience.</p>
+    </div>
     <div class="image-grid">
-        <img src="output_cathedral.jpg" alt="Image 1">
-        <img src="output_church.jpg" alt="Image 2">
-        <img src="output_emir.jpg" alt="Image 3">
-        <img src="image4.jpg" alt="Image 4">
-        <img src="image5.jpg" alt="Image 5">
-        <img src="image6.jpg" alt="Image 6">
-        <img src="image7.jpg" alt="Image 7">
-        <img src="image8.jpg" alt="Image 8">
-        <img src="image9.jpg" alt="Image 9">
-        <img src="image10.jpg" alt="Image 10">
-        <img src="image11.jpg" alt="Image 11">
-        <img src="image12.jpg" alt="Image 12">
-        <img src="image13.jpg" alt="Image 13">
-        <img src="image14.jpg" alt="Image 14">
-        <img src="image15.jpg" alt="Image 15">
+        <figure>
+            <img src="output_cathedral.jpg" alt="Cathedral">
+            <figcaption class="caption">Cathedral</figcaption>
+        </figure>
+        <figure>
+            <img src="output_church.jpg" alt="Church">
+            <figcaption class="caption">Church</figcaption>
+        </figure>
+        <figure>
+            <img src="output_emir.jpg" alt="Emir">
+            <figcaption class="caption">Emir</figcaption>
+        </figure>
+        <figure>
+            <img src="image4.jpg" alt="Image 4">
+            <figcaption class="caption">Image 4</figcaption>
+        </figure>
+        <figure>
+            <img src="image5.jpg" alt="Image 5">
+            <figcaption class="caption">Image 5</figcaption>
+        </figure>
+        <figure>
+            <img src="image6.jpg" alt="Image 6">
+            <figcaption class="caption">Image 6</figcaption>
+        </figure>
+        <figure>
+            <img src="image7.jpg" alt="Image 7">
+            <figcaption class="caption">Image 7</figcaption>
+        </figure>
+        <figure>
+            <img src="image8.jpg" alt="Image 8">
+            <figcaption class="caption">Image 8</figcaption>
+        </figure>
+        <figure>
+            <img src="image9.jpg" alt="Image 9">
+            <figcaption class="caption">Image 9</figcaption>
+        </figure>
+        <figure>
+            <img src="image10.jpg" alt="Image 10">
+            <figcaption class="caption">Image 10</figcaption>
+        </figure>
+        <figure>
+            <img src="image11.jpg" alt="Image 11">
+            <figcaption class="caption">Image 11</figcaption>
+        </figure>
+        <figure>
+            <img src="image12.jpg" alt="Image 12">
+            <figcaption class="caption">Image 12</figcaption>
+        </figure>
+        <figure>
+            <img src="image13.jpg" alt="Image 13">
+            <figcaption class="caption">Image 13</figcaption>
+        </figure>
+        <figure>
+            <img src="image14.jpg" alt="Image 14">
+            <figcaption class="caption">Image 14</figcaption>
+        </figure>
+        <figure>
+            <img src="image15.jpg" alt="Image 15">
+            <figcaption class="caption">Image 15</figcaption>
+        </figure>
     </div>
 </body>
 </html>
