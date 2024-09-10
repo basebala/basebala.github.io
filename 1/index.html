@@ -54,6 +54,31 @@
             font-size: .9em;
             color: #003366;
         }
+        .extra-credit {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .extra-credit h2 {
+            color: #003366;
+        }
+        .extra-credit .image-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .extra-credit .image-grid img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .extra-credit p {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #000000;
+        }
     </style>
 </head>
 <body>
@@ -146,6 +171,20 @@
             <div class="info">Cropped: 74 top, 110 bottom, 67 left, 159 right.</div>
             <div class="info">Red Image: (-35, 29) shift. Green Image: (-21, 7) shift.</div>
         </figure>
+    </div>
+    <div class="extra-credit">
+        <h2>Bells and Whistles</h2>
+        <div class="image-grid">
+            <figure>
+                <img src="output_melons.jpg" alt="Extra Image 1">
+                <figcaption class="caption">Melons without Cropping</figcaption>
+            </figure>
+            <figure>
+                <img src="new_melons.jpg" alt="Extra Image 2">
+                <figcaption class="caption">Melons with Cropping</figcaption>
+            </figure>
+        </div>
+        <p>For Bells and Whistles, I decided to attempt automated border cropping for the original images. I tried a variety of techniques, including using the mean pixel value and trying to only remove white borders, and eventually figured out a strategy for removing most of the white and black borders by using the percentage of pixels surpassing some value threshold as a metric for whether a row/column was a border row/column. Above is an example demonstrating the power of this technique on Melons.</p>
     </div>
 </body>
 </html>
