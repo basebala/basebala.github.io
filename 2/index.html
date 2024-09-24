@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - Fun with Filters and Frequencies</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #000000;
+            padding: 20px;
+        }
+        .description {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+            color: #000000;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .image-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: block;
+        }
+        .image-grid .caption {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 1.5em;
+            color: #003366;
+        }
+        .image-grid .info {
+            text-align: center;
+            margin-top: 5px;
+            font-size: .9em;
+            color: #003366;
+        }
+        .extra-credit {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .extra-credit h2 {
+            color: #003366;
+        }
+        .extra-credit .image-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .extra-credit .image-grid img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .extra-credit p {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 2 - Fun with Filters and Frequencies</h1>
+    <div class="description">
+        <p>For this project, the goal was to use the digitized Prokudin-Gorskii glass plate images, and, using image processing techniques, automatically produce a full-color image (variety of image sizes and formats - .jpg and .tif). Individually, I began by attempting a naive solution of translating one image onto another, trying all possible horizontal/vertical translation combinations of 30 pixels or less each way. This approach worked well for small images, but for larger images, this approach proved to be insufficient, as larger translations were often required, but searching a larger space of translations would take excessive runtime. In order to mitigate this issue, I leveraged an image pyramid, through which I began by downsampling (averaging) the larger images into images of around 200x200 pixels, and finding the best possible translation for this case. I then gradually downsampled the image less and searched a smaller space of possible translations (previous downsamples already reduced the search space significantly), increasing pixels by a factor of 2 each sample, both horizontally and vertically. Through this approach, I ended up with very clear full-color versions of both small and large images, and the runtime was efficient (O(N^2), where N is number of horizontal/vertical pixels). One issue that I ran into was that originally, my alignment strategy was to convolute images, through which I'd end up taking slightly cropped versions of images, which wouldn't work well with the image pyramid strategy. Instead, I decided to use the convolution to obtain the best shift, and then use this shift to roll images, through which I preserved image size and was able to easily implement the pyramid. Another issue I ran into was when I was using the Euclidean distance between two images as criteria for finding the best shift, this wasn't producing the best images compared to looking at structural similarity, so I switched to ssim instead.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="new_cathedral.jpg" alt="Cathedral">
+            <figcaption class="caption">Cathedral</figcaption>
+            <div class="info">Cropped: 12 top, 22 bottom, 13 left, 19 right.</div>
+            <div class="info">Red Image: (-10, 3) shift. Green Image: (-6, 2) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_church.jpg" alt="Church">
+            <figcaption class="caption">Church</figcaption>
+            <div class="info">Cropped: 70 top, 55 bottom, 41 left, 90 right.</div>
+            <div class="info">Red Image: (-24, -4) shift. Green Image: (-16, 4) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_emir.jpg" alt="Emir">
+            <figcaption class="caption">Emir</figcaption>
+            <div class="info">Cropped: 133 top, 218 bottom, 201 left, 146 right.</div>
+            <div class="info">Red Image: (-129, 40) shift. Green Image: (-67, 22) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_harvesters.jpg" alt="Harvesters">
+            <figcaption class="caption">Harvesters</figcaption>
+            <div class="info">Cropped: 92 top, 161 bottom, 63 left, 189 right.</div>
+            <div class="info">Red Image: (-43, 12) shift. Green Image: (24, 14) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_icon.jpg" alt="Icon">
+            <figcaption class="caption">Icon</figcaption>
+            <div class="info">Cropped: 52 top, 122 bottom, 63 left, 137 right.</div>
+            <div class="info">Red Image: (-27, 23) shift. Green Image: (-19, 16) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_lady.jpg" alt="Lady">
+            <figcaption class="caption">Lady</figcaption>
+            <div class="info">Cropped: 99 top, 148 bottom, 165 left, 127 right.</div>
+            <div class="info">Red Image: (-44, 12) shift. Green Image: (-25, 8) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_melons.jpg" alt="Melons">
+            <figcaption class="caption">Melons</figcaption>
+            <div class="info">Cropped: 197 top, 131 bottom, 175 left, 224 right.</div>
+            <div class="info">Red Image: (-39, 12) shift. Green Image: (-21, 10) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_monastery.jpg" alt="Monastery">
+            <figcaption class="caption">Monastery</figcaption>
+            <div class="info">Cropped: 13 top, 15 bottom, 12 left, 15 right.</div>
+            <div class="info">Red Image: (-15, 2) shift. Green Image: (-12, 2) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_onion.jpg" alt="Onion Church">
+            <figcaption class="caption">Onion Church</figcaption>
+            <div class="info">Cropped: 132 top, 121 bottom, 104 left, 135 right.</div>
+            <div class="info">Red Image: (-60, 35) shift. Green Image: (-32, 25) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_sculpture.jpg" alt="Sculpture">
+            <figcaption class="caption">Sculpture</figcaption>
+            <div class="info">Cropped: 111 top, 119 bottom, 101 left, 115 right.</div>
+            <div class="info">Red Image: (-12, -27) shift. Green Image: (-43, -11) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_self.jpg" alt="Self">
+            <figcaption class="caption">Self Portrait</figcaption>
+            <div class="info">Cropped: 185 top, 238 bottom, 292 left, 110 right.</div>
+            <div class="info">Red Image: (-105, 36) shift. Green Image: (-61, 29) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_three.jpg" alt="Three">
+            <figcaption class="caption">Three Generations</figcaption>
+            <div class="info">Cropped: 107 top, 119 bottom, 121 left, 93 right.</div>
+            <div class="info">Red Image: (-36, 9) shift. Green Image: (-17, 15) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_tobolsk.jpg" alt="Tobolsk">
+            <figcaption class="caption">Tobolsk</figcaption>
+            <div class="info">Cropped: 9 top, 20 bottom, 18 left, 18 right.</div>
+            <div class="info">Red Image: (-12, 3) shift. Green Image: (-6, 3) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_train.jpg" alt="Image 14">
+            <figcaption class="caption">Train</figcaption>
+            <div class="info">Cropped: 74 top, 110 bottom, 67 left, 159 right.</div>
+            <div class="info">Red Image: (-35, 29) shift. Green Image: (-21, 7) shift.</div>
+        </figure>
+        <figure>
+            <img src="new_prokudin_one.jpg" alt="Image 14">
+            <figcaption class="caption">Prokudin Image One</figcaption>
+        </figure>
+        <figure>
+            <img src="new_prokudin_two.jpg" alt="Image 14">
+            <figcaption class="caption">Prokudin Image Two</figcaption>
+        </figure>
+        <figure>
+            <img src="new_prokudin_three.jpg" alt="Image 14">
+            <figcaption class="caption">Prokudin Image Three</figcaption>
+        </figure>
+        <figure>
+            <img src="new_prokudin_four.jpg" alt="Image 14">
+            <figcaption class="caption">Prokudin Image Four</figcaption>
+        </figure>
+        
+    </div>
+    <div class="extra-credit">
+        <h2>Bells and Whistles</h2>
+        <div class="image-grid">
+            <figure>
+                <img src="output_melons.jpg" alt="Extra Image 1">
+                <figcaption class="caption">Melons without Cropping</figcaption>
+            </figure>
+            <figure>
+                <img src="new_melons.jpg" alt="Extra Image 2">
+                <figcaption class="caption">Melons with Cropping</figcaption>
+            </figure>
+        </div>
+        <p>For Bells and Whistles, I decided to attempt automated border cropping for the original images. I tried a variety of techniques, including using the mean pixel value and trying to only remove white borders, and eventually figured out a strategy for removing most of the white and black borders by using the percentage of pixels surpassing some value threshold as a metric for whether a row/column was a border row/column. Above is an example demonstrating the power of this technique on Melons.</p>
+    </div>
+</body>
+</html>
