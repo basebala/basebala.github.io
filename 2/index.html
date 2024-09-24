@@ -84,32 +84,28 @@
 <body>
     <h1>Project 2 - Fun with Filters and Frequencies</h1>
     <div class="description">
-        <p>For this project, the goal was to use the digitized Prokudin-Gorskii glass plate images, and, using image processing techniques, automatically produce a full-color image (variety of image sizes and formats - .jpg and .tif). Individually, I began by attempting a naive solution of translating one image onto another, trying all possible horizontal/vertical translation combinations of 30 pixels or less each way. This approach worked well for small images, but for larger images, this approach proved to be insufficient, as larger translations were often required, but searching a larger space of translations would take excessive runtime. In order to mitigate this issue, I leveraged an image pyramid, through which I began by downsampling (averaging) the larger images into images of around 200x200 pixels, and finding the best possible translation for this case. I then gradually downsampled the image less and searched a smaller space of possible translations (previous downsamples already reduced the search space significantly), increasing pixels by a factor of 2 each sample, both horizontally and vertically. Through this approach, I ended up with very clear full-color versions of both small and large images, and the runtime was efficient (O(N^2), where N is number of horizontal/vertical pixels). One issue that I ran into was that originally, my alignment strategy was to convolute images, through which I'd end up taking slightly cropped versions of images, which wouldn't work well with the image pyramid strategy. Instead, I decided to use the convolution to obtain the best shift, and then use this shift to roll images, through which I preserved image size and was able to easily implement the pyramid. Another issue I ran into was when I was using the Euclidean distance between two images as criteria for finding the best shift, this wasn't producing the best images compared to looking at structural similarity, so I switched to ssim instead.</p>
+        <p>Gradient magnitude computation is a method for detecting edges in image analysis. It's conducted by obtaining the gradient with respect to x at any pixel, dx, as well as the gradient with respect to y, dy, and then taking the square root of dx^2 + dy^2. This gives a singular value that represents the strength of the gradient at a particular point.</p>
     </div>
     <div class="image-grid">
         <figure>
-            <img src="new_cathedral.jpg" alt="Cathedral">
-            <figcaption class="caption">Cathedral</figcaption>
-            <div class="info">Cropped: 12 top, 22 bottom, 13 left, 19 right.</div>
-            <div class="info">Red Image: (-10, 3) shift. Green Image: (-6, 2) shift.</div>
+            <img src="df_x.png" alt="Cathedral">
+            <figcaption class="caption">X Gradients</figcaption>
+            <div class="info">Grayscale image of x gradients.</div>
         </figure>
         <figure>
-            <img src="new_church.jpg" alt="Church">
-            <figcaption class="caption">Church</figcaption>
-            <div class="info">Cropped: 70 top, 55 bottom, 41 left, 90 right.</div>
-            <div class="info">Red Image: (-24, -4) shift. Green Image: (-16, 4) shift.</div>
+            <img src="df_y.png" alt="Church">
+            <figcaption class="caption">Y Gradients</figcaption>
+            <div class="info">Grayscale image of y gradients.</div>
         </figure>
         <figure>
-            <img src="new_emir.jpg" alt="Emir">
-            <figcaption class="caption">Emir</figcaption>
-            <div class="info">Cropped: 133 top, 218 bottom, 201 left, 146 right.</div>
-            <div class="info">Red Image: (-129, 40) shift. Green Image: (-67, 22) shift.</div>
+            <img src="gradient_mag.jpg" alt="Emir">
+            <figcaption class="caption">Gradient Magnitude</figcaption>
+            <div class="info">Gradient magnitude image using both x and y</div>
         </figure>
         <figure>
-            <img src="new_harvesters.jpg" alt="Harvesters">
-            <figcaption class="caption">Harvesters</figcaption>
-            <div class="info">Cropped: 92 top, 161 bottom, 63 left, 189 right.</div>
-            <div class="info">Red Image: (-43, 12) shift. Green Image: (24, 14) shift.</div>
+            <img src="binarized_mag.jpg" alt="Harvesters">
+            <figcaption class="caption">Binarized Magnitude</figcaption>
+            <div class="info">Binarized version of gradient magnitude image, threshold .55.</div>
         </figure>
         <figure>
             <img src="new_icon.jpg" alt="Icon">
