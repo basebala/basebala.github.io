@@ -194,6 +194,62 @@
             <div class="info">Blurred Gorilla after identity - gaussian filter (a = 3, same Gaussian).</div>
         </figure> 
     </div>
+    <h2>2.2 (with bells and whistles)</h2>
+    <div class="description">
+        <p>I initially got the colorless low/high frequency blending to work with Derek and the cat with sigma values of 5 for both the Gaussian and the unsharp mask filter. I then attempted to use color for one or both images, finding that using color for the high-frequency image worked best. I tried blending two flowers together which worked well with low-frequency sigma 1 and high-frequency sigma 10 (sunflower and daisy). I also tried blending together Michael Jordan and Anthony Edwards, which didn't work as well (sigma values 2 for each).</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="colorless.jpg" alt="Cathedral">
+            <figcaption class="caption">Colorless Blend</figcaption>
+            <div class="info">Sigma values of 5. Kernel Size 21.</div>
+        </figure>
+        <figure>
+            <img src="derek_nocolor.jpg" alt="Cathedral">
+            <figcaption class="caption">Colored Cat</figcaption>
+            <div class="info">Sigma values of 5. Kernel size 21.</div>
+        </figure>
+        <figure>
+            <img src="cat_nocolor.jpg" alt="Cathedral">
+            <figcaption class="caption">Colored Derek</figcaption>
+            <div class="info">Sigma values of 5. Kernel size 21.</div>
+        </figure>
+        <figure>
+            <img src="full_color.jpeg" alt="Church">
+            <figcaption class="caption">Full Color</figcaption>
+            <div class="info">Sigma values of 5. Kernel size 21.</div>
+        </figure>
+        <figure>
+            <img src="mj_ant.jpg" alt="Emir">
+            <figcaption class="caption">Jordan and Edwards</figcaption>
+            <div class="info">Sigma values of 2, kernel size 21.</div>
+        </figure>
+        <figure>
+            <img src="flowers.jpg" alt="Harvesters">
+            <figcaption class="caption">Daisy and Sunflower</figcaption>
+            <div class="info">Low-freq sigma 1, high-freq sigma 10. Kernel size 21.</div>
+        </figure>   
+        <figure>
+            <img src="cat_unfiltered.jpg" alt="Emir">
+            <figcaption class="caption">FFT of Cat</figcaption>
+        </figure>
+        <figure>
+            <img src="cat_filtered.jpg" alt="Harvesters">
+            <figcaption class="caption">FFT of Filtered Cat</figcaption>
+        </figure> 
+        <figure>
+            <img src="derek_unfiltered.jpg" alt="Emir">
+            <figcaption class="caption">FFT of Derek</figcaption>
+        </figure>
+        <figure>
+            <img src="derek_filtered.jpg" alt="Harvesters">
+            <figcaption class="caption">FFT of Filtered Derek</figcaption>
+        </figure> 
+        <figure>
+            <img src="hybrid_freq.jpg" alt="Harvesters">
+            <figcaption class="caption">FFT of Final Image</figcaption>
+        </figure> 
+    </div>
     <div class="extra-credit">
         <h2>Bells and Whistles</h2>
         <div class="image-grid">
