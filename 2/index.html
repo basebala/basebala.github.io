@@ -250,6 +250,76 @@
             <figcaption class="caption">FFT of Final Image</figcaption>
         </figure> 
     </div>
+    <h2>2.3/4 (with bells and whistles)</h2>
+    <div class="description">
+        <p>I created combined images of the sun with other stars and a mountain next to a rainforest. For bells and whistles, one thing I implemented was full color for the apples/oranges. Also, I used a transition region for the mask, gradually decreasing values from 1 to 0 starting 25 pixels to the left of the middle. Moreover, I created a combination of 3 images using multiple masks for bells and whistles.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="apple_gauss.png" alt="Cathedral">
+            <figcaption class="caption">Gaussian of Apple</figcaption>
+            <div class="info">Sigma values of 2^level. Kernel size 11.</div>
+        </figure>
+        <figure>
+            <img src="apple_laplace.png" alt="Cathedral">
+            <figcaption class="caption">Laplacian of Apple</figcaption>
+            <div class="info">Sigma values of 2^level. Kernel size 11.</div>
+        </figure>
+        <figure>
+            <img src="orange_gauss.png" alt="Cathedral">
+            <figcaption class="caption">Gaussian of Orange</figcaption>
+            <div class="info">Sigma values of 2^level. Kernel size 11.</div>
+        </figure>
+        <figure>
+            <img src="orange_laplace.png" alt="Cathedral">
+            <figcaption class="caption">Laplacian of Orange</figcaption>
+            <div class="info">Sigma values of 2^level. Kernel size 11.</div>
+        </figure>
+        <figure>
+            <img src="blended_apple_orange.png" alt="Emir">
+            <figcaption class="caption">Orange and Apple Blend</figcaption>
+            <div class="info">Without Transition Region</div>
+        </figure>
+        <figure>
+            <img src="blended_apple_orange.png" alt="Emir">
+            <figcaption class="caption">Orange and Apple Blend</figcaption>
+            <div class="info">With Transition Region</div>
+        </figure> 
+        <figure>
+            <img src="mountaineous.jpeg" alt="Emir">
+            <figcaption class="caption">Mountain</figcaption>
+        </figure>
+        <figure>
+            <img src="rainforest.jpg" alt="Harvesters">
+            <figcaption class="caption">Rainforest</figcaption>
+        </figure> 
+        <figure>
+            <img src="mountain_forest_blend.png" alt="Emir">
+            <figcaption class="caption">Mountain and Rainforest</figcaption>
+            <div class="info">5 Layer Blend.</div>
+        </figure>
+        <figure>
+            <img src="mountain_forest_stack.png" alt="Harvesters">
+            <figcaption class="caption">Laplace, Gauss, Combined for Mountain/Forest</figcaption>
+        </figure> 
+        <figure>
+            <img src="stars.jpg" alt="Emir">
+            <figcaption class="caption">Stars</figcaption>
+        </figure>
+        <figure>
+            <img src="sunny.jpeg" alt="Harvesters">
+            <figcaption class="caption">Sun</figcaption>
+        </figure> 
+        <figure>
+            <img src="sun_stars_blend.png" alt="Emir">
+            <figcaption class="caption">Sun and Stars</figcaption>
+            <div class="info">5 Layer Blend.</div>
+        </figure>
+        <figure>
+            <img src="sun_stars_stack.png" alt="Harvesters">
+            <figcaption class="caption">Laplace, Gauss, Combined for Stars/Sun</figcaption>
+        </figure> 
+    </div>
     <div class="extra-credit">
         <h2>Bells and Whistles</h2>
         <div class="image-grid">
