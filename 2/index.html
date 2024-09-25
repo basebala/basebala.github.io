@@ -17,6 +17,9 @@
             color: #000000;
             padding: 20px;
         }
+        h2 {
+            text-align: center;
+        }
         .description {
             max-width: 800px;
             margin: 0 auto;
@@ -83,7 +86,7 @@
 </head>
 <body>
     <h1>Project 2 - Fun with Filters and Frequencies</h1>
-    <h2>2.1</h2>
+    <h2>1.1</h2>
     <div class="description">
         <p>Gradient magnitude computation is a method for detecting edges in image analysis. It's conducted by obtaining the gradient with respect to x at any pixel, dx, as well as the gradient with respect to y, dy, and then taking the square root of dx^2 + dy^2. This gives a singular value that represents the strength of the gradient at a particular point.</p>
     </div>
@@ -109,7 +112,7 @@
             <div class="info">Binarized version of gradient magnitude image, threshold .65.</div>
         </figure>   
     </div>
-    <h2>2.1</h2>
+    <h2>1.2</h2>
     <div class="description">
         <p>There were a few primary differences that I noted between the results of applying the Gaussian filter prior to doing the binarized gradient magnitude computation and not applying the filter. One difference was that with the Gaussian filter, edges were a lot more pronounced. Another major difference was there was a lot less noise when the Gaussian filter was applied. Moreover, the edges displayed best with a lower threshold when the Gaussian filter was used. In addition, I also tried created derivative of Gaussian (DoG) filters, an approach for which the original image was convoluted with combined Gaussian/dx and Gaussian/dy filters. This led to the exact same result as when the Gaussian was applied prior to the derivative filters, which is aligned with the theorem discussed in class.</p>
     </div>
@@ -143,6 +146,42 @@
             <img src="binarized_mag_gaussian_conv.jpg" alt="Harvesters">
             <figcaption class="caption">Binarized Magnitude DoG</figcaption>
             <div class="info">Binarized version of gradient magnitude image, threshold .55 after DoG filter</div>
+        </figure> 
+    </div>
+    <h2>2.1</h2>
+    <div class="description">
+        <p>The sharpened image is significantly sharper compared to the blurry image. However, it is still not quite as sharp as the original. It also appears slightly more pixelated than the original. This holds for both the Taj Mahal image and the gorilla.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="taj.jpg" alt="Cathedral">
+            <figcaption class="caption">Original Taj Mahal</figcaption>
+            <div class="info">No Modifications</div>
+        </figure>
+        <figure>
+            <img src="gorilla.jpeg" alt="Church">
+            <figcaption class="caption">Original Gorilla</figcaption>
+            <div class="info">No Modifications</div>
+        </figure>
+        <figure>
+            <img src="blurred_taj.jpg" alt="Emir">
+            <figcaption class="caption">Blurred Taj Mahal</figcaption>
+            <div class="info">Taj Mahal after kernel 5, sigma 1 Gaussian 2d filter.</div>
+        </figure>
+        <figure>
+            <img src="blurred_gorilla.jpg" alt="Harvesters">
+            <figcaption class="caption">Blurred Gorilla</figcaption>
+            <div class="info">Gorilla after kernel 5, sigma 1 Gaussian 2d filter.</div>
+        </figure>   
+        <figure>
+            <img src="sharpened_taj_jpg" alt="Emir">
+            <figcaption class="caption">Sharpened Taj Mahal</figcaption>
+            <div class="info">Blurred Taj Mahal after identity - gaussian filter (a = 3, same Gaussian).</div>
+        </figure>
+        <figure>
+            <img src="sharpened_gorilla.jpg" alt="Harvesters">
+            <figcaption class="caption">Sharpened Gorilla</figcaption>
+            <div class="info">Blurred Gorilla after identity - gaussian filter (a = 3, same Gaussian).</div>
         </figure> 
     </div>
     <div class="extra-credit">
