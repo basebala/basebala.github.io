@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - Fun with Filters and Frequencies</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #000000;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .description {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+            color: #000000;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .image-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: block;
+        }
+        .image-grid .caption {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 1.5em;
+            color: #003366;
+        }
+        .image-grid .info {
+            text-align: center;
+            margin-top: 5px;
+            font-size: .9em;
+            color: #003366;
+        }
+        .extra-credit {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .extra-credit h2 {
+            color: #003366;
+        }
+        .extra-credit .image-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .extra-credit .image-grid img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .extra-credit p {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 2 - Fun with Filters and Frequencies</h1>
+    <h2>1.1</h2>
+    <div class="description">
+        <p>Gradient magnitude computation is a method for detecting edges in image analysis. It's conducted by obtaining the gradient with respect to x at any pixel, dx, as well as the gradient with respect to y, dy, and then taking the square root of dx^2 + dy^2. This gives a singular value that represents the strength of the gradient at a particular point.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="df_x.png" alt="Cathedral">
+            <figcaption class="caption">X Gradients</figcaption>
+            <div class="info">Grayscale image of x gradients.</div>
+        </figure>
+        <figure>
+            <img src="df_y.png" alt="Church">
+            <figcaption class="caption">Y Gradients</figcaption>
+            <div class="info">Grayscale image of y gradients.</div>
+        </figure>
+        <figure>
+            <img src="gradient_mag.jpg" alt="Emir">
+            <figcaption class="caption">Gradient Magnitude</figcaption>
+            <div class="info">Gradient magnitude image using both x and y</div>
+        </figure>
+        <figure>
+            <img src="binarized_mag.jpg" alt="Harvesters">
+            <figcaption class="caption">Binarized Magnitude</figcaption>
+            <div class="info">Binarized version of gradient magnitude image, threshold .65.</div>
+        </figure>   
+    </div>
+    <h2>1.2</h2>
+    <div class="description">
+        <p>There were a few primary differences that I noted between the results of applying the Gaussian filter prior to doing the binarized gradient magnitude computation and not applying the filter. One difference was that with the Gaussian filter, edges were a lot more pronounced. Another major difference was there was a lot less noise when the Gaussian filter was applied. Moreover, the edges displayed best with a lower threshold when the Gaussian filter was used. In addition, I also tried created derivative of Gaussian (DoG) filters, an approach for which the original image was convoluted with combined Gaussian/dx and Gaussian/dy filters. This led to the exact same result as when the Gaussian was applied prior to the derivative filters, which is aligned with the theorem discussed in class.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="df_x_gaussian.png" alt="Cathedral">
+            <figcaption class="caption">X Gradients with Gaussian</figcaption>
+            <div class="info">Grayscale image of x gradients after Gaussian filter.</div>
+        </figure>
+        <figure>
+            <img src="df_y_gaussian.png" alt="Church">
+            <figcaption class="caption">Y Gradients</figcaption>
+            <div class="info">Grayscale image of y gradients after Gaussian filter.</div>
+        </figure>
+        <figure>
+            <img src="gradient_mag_gaussian.jpg" alt="Emir">
+            <figcaption class="caption">Gradient Magnitude</figcaption>
+            <div class="info">Gradient magnitude image using both x and y after Gaussian filter.</div>
+        </figure>
+        <figure>
+            <img src="binarized_mag_gaussian.jpg" alt="Harvesters">
+            <figcaption class="caption">Binarized Magnitude</figcaption>
+            <div class="info">Binarized version of gradient magnitude image, threshold .55 after Gaussian filter</div>
+        </figure>   
+        <figure>
+            <img src="gradient_mag_gaussian_conv.jpg" alt="Emir">
+            <figcaption class="caption">Gradient Magnitude DoG</figcaption>
+            <div class="info">Gradient magnitude image using both x and y after DoG filter.</div>
+        </figure>
+        <figure>
+            <img src="binarized_mag_gaussian_conv.jpg" alt="Harvesters">
+            <figcaption class="caption">Binarized Magnitude DoG</figcaption>
+            <div class="info">Binarized version of gradient magnitude image, threshold .55 after DoG filter</div>
+        </figure> 
+    </div>
+    <h2>2.1</h2>
+    <div class="description">
+        <p>I initially tried just sharpening two images that were already sharp with this filter. The results were extremely sharp, to the point where they appeared artificial. I then tried blurring a sharp image and then sharpening it. The sharpened image is significantly sharper compared to the blurry image. However, it is still not quite as sharp as the original. It also appears slightly more pixelated than the original. This holds for both the Taj Mahal image and the gorilla.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="extra_sharp_taj.jpg" alt="Cathedral">
+            <figcaption class="caption">Sharpened Taj</figcaption>
+            <div class="info">Sharpened with identity - gaussian filter (a = 3, Gaussian kernel 5 and sigma 1).</div>
+        </figure>
+        <figure>
+            <img src="extra_sharp_gorilla.jpg" alt="Cathedral">
+            <figcaption class="caption">Sharpened Gorilla</figcaption>
+            <div class="info">Sharpened with identity - gaussian filter (a = 3, Gaussian kernel 5 and sigma 1).</div>
+        </figure>
+        <figure>
+            <img src="taj.jpg" alt="Cathedral">
+            <figcaption class="caption">Original Taj Mahal</figcaption>
+            <div class="info">No Modifications</div>
+        </figure>
+        <figure>
+            <img src="gorilla.jpeg" alt="Church">
+            <figcaption class="caption">Original Gorilla</figcaption>
+            <div class="info">No Modifications</div>
+        </figure>
+        <figure>
+            <img src="blurred_taj.jpg" alt="Emir">
+            <figcaption class="caption">Blurred Taj Mahal</figcaption>
+            <div class="info">Taj Mahal after kernel 5, sigma 1 Gaussian 2d filter.</div>
+        </figure>
+        <figure>
+            <img src="blurred_gorilla.jpg" alt="Harvesters">
+            <figcaption class="caption">Blurred Gorilla</figcaption>
+            <div class="info">Gorilla after kernel 5, sigma 1 Gaussian 2d filter.</div>
+        </figure>   
+        <figure>
+            <img src="sharpened_taj.jpg" alt="Emir">
+            <figcaption class="caption">Sharpened Taj Mahal</figcaption>
+            <div class="info">Blurred Taj Mahal after identity - gaussian filter (a = 3, same Gaussian).</div>
+        </figure>
+        <figure>
+            <img src="sharpened_gorilla.jpg" alt="Harvesters">
+            <figcaption class="caption">Sharpened Gorilla</figcaption>
+            <div class="info">Blurred Gorilla after identity - gaussian filter (a = 3, same Gaussian).</div>
+        </figure> 
+    </div>
+    <h2>2.2 (with bells and whistles)</h2>
+    <div class="description">
+        <p>I initially got the colorless low/high frequency blending to work with Derek and the cat with sigma values of 5 for both the Gaussian and the unsharp mask filter. I then attempted to use color for one or both images, finding that using color for the high-frequency image worked best. I tried blending two flowers together which worked well with low-frequency sigma 1 and high-frequency sigma 10 (sunflower and daisy). I also tried blending together Michael Jordan and Anthony Edwards, which didn't work as well (sigma values 2 for each).</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="colorless.jpg" alt="Cathedral">
+            <figcaption class="caption">Colorless Blend</figcaption>
+            <div class="info">Sigma values of 5. Kernel Size 21.</div>
+        </figure>
+        <figure>
+            <img src="derek_nocolor.jpg" alt="Cathedral">
+            <figcaption class="caption">Colored Cat</figcaption>
+            <div class="info">Sigma values of 5. Kernel size 21.</div>
+        </figure>
+        <figure>
+            <img src="cat_nocolor.jpg" alt="Cathedral">
+            <figcaption class="caption">Colored Derek</figcaption>
+            <div class="info">Sigma values of 5. Kernel size 21.</div>
+        </figure>
+        <figure>
+            <img src="full_color.jpg" alt="Church">
+            <figcaption class="caption">Full Color</figcaption>
+            <div class="info">Sigma values of 5. Kernel size 21.</div>
+        </figure>
+        <figure>
+            <img src="mj_ant.jpg" alt="Emir">
+            <figcaption class="caption">Jordan and Edwards</figcaption>
+            <div class="info">Sigma values of 2, kernel size 21.</div>
+        </figure>
+        <figure>
+            <img src="flowers.jpg" alt="Harvesters">
+            <figcaption class="caption">Daisy and Sunflower</figcaption>
+            <div class="info">Low-freq sigma 1, high-freq sigma 10. Kernel size 21.</div>
+        </figure>   
+        <figure>
+            <img src="cat_unfiltered.png" alt="Emir">
+            <figcaption class="caption">FFT of Cat</figcaption>
+        </figure>
+        <figure>
+            <img src="cat_filtered.png" alt="Harvesters">
+            <figcaption class="caption">FFT of Filtered Cat</figcaption>
+        </figure> 
+        <figure>
+            <img src="derek_unfiltered.png" alt="Emir">
+            <figcaption class="caption">FFT of Derek</figcaption>
+        </figure>
+        <figure>
+            <img src="derek_filtered.png" alt="Harvesters">
+            <figcaption class="caption">FFT of Filtered Derek</figcaption>
+        </figure> 
+        <figure>
+            <img src="hybrid_freq.png" alt="Harvesters">
+            <figcaption class="caption">FFT of Final Image</figcaption>
+        </figure> 
+    </div>
+    <h2>2.3/4 (with bells and whistles)</h2>
+    <div class="description">
+        <p>I created combined images of the sun with other stars and a mountain next to a rainforest. For bells and whistles, one thing I implemented was full color for the apples/oranges. Also, I used a transition region for the mask, gradually decreasing values from 1 to 0 starting 25 pixels to the left of the middle. I used this for the mountain/rainforest blend as well. Moreover, I created a combination of 3 images using multiple masks for bells and whistles.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="apple_gauss.png" alt="Cathedral">
+            <figcaption class="caption">Gaussian of Apple</figcaption>
+            <div class="info">Sigma values of 2^level. Kernel size 11.</div>
+        </figure>
+        <figure>
+            <img src="apple_laplace.png" alt="Cathedral">
+            <figcaption class="caption">Laplacian of Apple</figcaption>
+            <div class="info">Sigma values of 2^level. Kernel size 11.</div>
+        </figure>
+        <figure>
+            <img src="orange_gauss.png" alt="Cathedral">
+            <figcaption class="caption">Gaussian of Orange</figcaption>
+            <div class="info">Sigma values of 2^level. Kernel size 11.</div>
+        </figure>
+        <figure>
+            <img src="orange_laplace.png" alt="Cathedral">
+            <figcaption class="caption">Laplacian of Orange</figcaption>
+            <div class="info">Sigma values of 2^level. Kernel size 11.</div>
+        </figure>
+        <figure>
+            <img src="blended_apple_orange.png" alt="Emir">
+            <figcaption class="caption">Orange and Apple Blend</figcaption>
+            <div class="info">With Transition Region</div>
+        </figure>
+        <figure>
+            <img src="no_transition.png" alt="Emir">
+            <figcaption class="caption">Orange and Apple Blend</figcaption>
+            <div class="info">Without Transition Region</div>
+        </figure> 
+        <figure>
+            <img src="mountaineous.jpeg" alt="Emir">
+            <figcaption class="caption">Mountain</figcaption>
+        </figure>
+        <figure>
+            <img src="rainforest.jpg" alt="Harvesters">
+            <figcaption class="caption">Rainforest</figcaption>
+        </figure> 
+        <figure>
+            <img src="mountain_forest_blend.png" alt="Emir">
+            <figcaption class="caption">Mountain and Rainforest</figcaption>
+            <div class="info">5 Layer Blend.</div>
+        </figure>
+        <figure>
+            <img src="mountain_forest_stack.png" alt="Harvesters">
+            <figcaption class="caption">Laplace, Gauss, Combined for Mountain/Forest</figcaption>
+        </figure> 
+        <figure>
+            <img src="stars.jpg" alt="Emir">
+            <figcaption class="caption">Stars</figcaption>
+        </figure>
+        <figure>
+            <img src="sunny.jpeg" alt="Harvesters">
+            <figcaption class="caption">Sun</figcaption>
+        </figure> 
+        <figure>
+            <img src="sun_stars_blend.png" alt="Emir">
+            <figcaption class="caption">Sun and Stars</figcaption>
+            <div class="info">5 Layer Blend.</div>
+        </figure>
+        <figure>
+            <img src="sun_stars_stack.png" alt="Harvesters">
+            <figcaption class="caption">Laplace, Gauss, Combined for Stars/Sun</figcaption>
+        </figure> 
+        <figure>
+            <img src="3_blend.png" alt="Harvesters">
+            <figcaption class="caption">Combined Mountain, Forest, and Ocean.</figcaption>
+        </figure> 
+    </div>
+</body>
+</html>
