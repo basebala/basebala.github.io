@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2 - Fun with Filters and Frequencies</title>
+    <title>Project 3 - Face Morphing</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -85,32 +85,22 @@
     </style>
 </head>
 <body>
-    <h1>Project 2 - Fun with Filters and Frequencies</h1>
-    <h2>1.1</h2>
+    <h1>Project 3 - Face Morphing</h1>
+    <h2>Part 1</h2>
     <div class="description">
-        <p>Gradient magnitude computation is a method for detecting edges in image analysis. It's conducted by obtaining the gradient with respect to x at any pixel, dx, as well as the gradient with respect to y, dy, and then taking the square root of dx^2 + dy^2. This gives a singular value that represents the strength of the gradient at a particular point.</p>
+        <p>I began by cropping and rescaling the images of myself and LeBron so that they would have identical dimensions. I then proceeded to use an online tool to choose a collection of points (31) that matched so that I could produce the warping shapes. This included the four corners of each image. I then took the mean of corresponding points and computed Delaunay triangulation using SciPy.</p>
     </div>
     <div class="image-grid">
         <figure>
-            <img src="df_x.png" alt="Cathedral">
-            <figcaption class="caption">X Gradients</figcaption>
-            <div class="info">Grayscale image of x gradients.</div>
+            <img src="me_triangle.png" alt="Cathedral">
+            <figcaption class="caption">Me</figcaption>
+            <div class="info">Triangulated image of me.</div>
         </figure>
         <figure>
-            <img src="df_y.png" alt="Church">
-            <figcaption class="caption">Y Gradients</figcaption>
-            <div class="info">Grayscale image of y gradients.</div>
+            <img src="lebron_triangle.png" alt="Church">
+            <figcaption class="caption">Goat</figcaption>
+            <div class="info">Triangulated image of LeBron James.</div>
         </figure>
-        <figure>
-            <img src="gradient_mag.jpg" alt="Emir">
-            <figcaption class="caption">Gradient Magnitude</figcaption>
-            <div class="info">Gradient magnitude image using both x and y</div>
-        </figure>
-        <figure>
-            <img src="binarized_mag.jpg" alt="Harvesters">
-            <figcaption class="caption">Binarized Magnitude</figcaption>
-            <div class="info">Binarized version of gradient magnitude image, threshold .65.</div>
-        </figure>   
     </div>
     <h2>1.2</h2>
     <div class="description">
