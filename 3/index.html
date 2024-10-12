@@ -123,51 +123,16 @@
             <div class="info">Warped and cross-dissolved image of myself and LeBron, with warping and dissolving constants of .5 each.</div>
         </figure>
     </div>
-    <h2>2.1</h2>
+    <h2>Part 3</h2>
     <div class="description">
-        <p>I initially tried just sharpening two images that were already sharp with this filter. The results were extremely sharp, to the point where they appeared artificial. I then tried blurring a sharp image and then sharpening it. The sharpened image is significantly sharper compared to the blurry image. However, it is still not quite as sharp as the original. It also appears slightly more pixelated than the original. This holds for both the Taj Mahal image and the gorilla.</p>
+        <p>I applied what I did in part 2, now instead of using strictly .5 as the warping/dissolving constant I used a range of values between 0 and 1. I used exactly 45 values, inclusive of 0 and 1 (np.linspace helped here). I then created a GIF file which shows the morphing from myself to LeBron.</p>
     </div>
     <div class="image-grid">
         <figure>
-            <img src="extra_sharp_taj.jpg" alt="Cathedral">
-            <figcaption class="caption">Sharpened Taj</figcaption>
-            <div class="info">Sharpened with identity - gaussian filter (a = 3, Gaussian kernel 5 and sigma 1).</div>
+            <img src="output.gif" alt="Cathedral">
+            <figcaption class="caption">GIF</figcaption>
+            <div class="info">45 distinct values of t including 0 and 1 in that range.</div>
         </figure>
-        <figure>
-            <img src="extra_sharp_gorilla.jpg" alt="Cathedral">
-            <figcaption class="caption">Sharpened Gorilla</figcaption>
-            <div class="info">Sharpened with identity - gaussian filter (a = 3, Gaussian kernel 5 and sigma 1).</div>
-        </figure>
-        <figure>
-            <img src="taj.jpg" alt="Cathedral">
-            <figcaption class="caption">Original Taj Mahal</figcaption>
-            <div class="info">No Modifications</div>
-        </figure>
-        <figure>
-            <img src="gorilla.jpeg" alt="Church">
-            <figcaption class="caption">Original Gorilla</figcaption>
-            <div class="info">No Modifications</div>
-        </figure>
-        <figure>
-            <img src="blurred_taj.jpg" alt="Emir">
-            <figcaption class="caption">Blurred Taj Mahal</figcaption>
-            <div class="info">Taj Mahal after kernel 5, sigma 1 Gaussian 2d filter.</div>
-        </figure>
-        <figure>
-            <img src="blurred_gorilla.jpg" alt="Harvesters">
-            <figcaption class="caption">Blurred Gorilla</figcaption>
-            <div class="info">Gorilla after kernel 5, sigma 1 Gaussian 2d filter.</div>
-        </figure>   
-        <figure>
-            <img src="sharpened_taj.jpg" alt="Emir">
-            <figcaption class="caption">Sharpened Taj Mahal</figcaption>
-            <div class="info">Blurred Taj Mahal after identity - gaussian filter (a = 3, same Gaussian).</div>
-        </figure>
-        <figure>
-            <img src="sharpened_gorilla.jpg" alt="Harvesters">
-            <figcaption class="caption">Sharpened Gorilla</figcaption>
-            <div class="info">Blurred Gorilla after identity - gaussian filter (a = 3, same Gaussian).</div>
-        </figure> 
     </div>
     <h2>2.2 (with bells and whistles)</h2>
     <div class="description">
