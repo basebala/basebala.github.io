@@ -134,60 +134,58 @@
             <div class="info">45 distinct values of t including 0 and 1 in that range.</div>
         </figure>
     </div>
-    <h2>2.2 (with bells and whistles)</h2>
+    <h2>Part 4</h2>
     <div class="description">
-        <p>I initially got the colorless low/high frequency blending to work with Derek and the cat with sigma values of 5 for both the Gaussian and the unsharp mask filter. I then attempted to use color for one or both images, finding that using color for the high-frequency image worked best. I tried blending two flowers together which worked well with low-frequency sigma 1 and high-frequency sigma 10 (sunflower and daisy). I also tried blending together Michael Jordan and Anthony Edwards, which didn't work as well (sigma values 2 for each).</p>
+        <p>For this part, I used the FEI face database. In particular, I used the A images (100). I parsed through each of the text files for points to obtain corresponding keypoints for each image and averaged to get the average shape. I then morphed a few of the images into this shape (selection shown below). I also morphed all the images into this shape and took the average to obtain the average face. Finally, I morphed my own face into this average shape, and taking the geometry of my own face, morphed the average face from the dataset into mine.</p>
     </div>
     <div class="image-grid">
         <figure>
-            <img src="colorless.jpg" alt="Cathedral">
-            <figcaption class="caption">Colorless Blend</figcaption>
-            <div class="info">Sigma values of 5. Kernel Size 21.</div>
+            <img src="1a.jpg" alt="Cathedral">
+            <figcaption class="caption">Person 1A</figcaption>
         </figure>
         <figure>
-            <img src="derek_nocolor.jpg" alt="Cathedral">
-            <figcaption class="caption">Colored Cat</figcaption>
-            <div class="info">Sigma values of 5. Kernel size 21.</div>
+            <img src="first_into_avg.jpg" alt="Cathedral">
+            <figcaption class="caption">Person 1A (morphed)</figcaption>
         </figure>
         <figure>
-            <img src="cat_nocolor.jpg" alt="Cathedral">
-            <figcaption class="caption">Colored Derek</figcaption>
-            <div class="info">Sigma values of 5. Kernel size 21.</div>
+            <img src="2a.jpg" alt="Cathedral">
+            <figcaption class="caption">Person 2A</figcaption>
         </figure>
         <figure>
-            <img src="full_color.jpg" alt="Church">
-            <figcaption class="caption">Full Color</figcaption>
-            <div class="info">Sigma values of 5. Kernel size 21.</div>
+            <img src="first_into_avg_2a.jpg" alt="Church">
+            <figcaption class="caption">Person 2A (morphed)</figcaption>
         </figure>
         <figure>
-            <img src="mj_ant.jpg" alt="Emir">
-            <figcaption class="caption">Jordan and Edwards</figcaption>
-            <div class="info">Sigma values of 2, kernel size 21.</div>
+            <img src="3a.jpg" alt="Emir">
+            <figcaption class="caption">Person 3A</figcaption>
         </figure>
         <figure>
-            <img src="flowers.jpg" alt="Harvesters">
-            <figcaption class="caption">Daisy and Sunflower</figcaption>
-            <div class="info">Low-freq sigma 1, high-freq sigma 10. Kernel size 21.</div>
+            <img src="first_into_avg_3a.jpg" alt="Harvesters">
+            <figcaption class="caption">Person 3A (morphed)</figcaption>
         </figure>   
         <figure>
-            <img src="cat_unfiltered.png" alt="Emir">
-            <figcaption class="caption">FFT of Cat</figcaption>
+            <img src="4a.jpg" alt="Emir">
+            <figcaption class="caption">Person 4A</figcaption>
         </figure>
         <figure>
-            <img src="cat_filtered.png" alt="Harvesters">
-            <figcaption class="caption">FFT of Filtered Cat</figcaption>
+            <img src="first_into_avg_4a.jpg" alt="Harvesters">
+            <figcaption class="caption">Person 4A (morphed)</figcaption>
         </figure> 
         <figure>
-            <img src="derek_unfiltered.png" alt="Emir">
-            <figcaption class="caption">FFT of Derek</figcaption>
+            <img src="all_faces_averaged.jpg" alt="Emir">
+            <figcaption class="caption">Average of all</figcaption>
         </figure>
         <figure>
-            <img src="derek_filtered.png" alt="Harvesters">
-            <figcaption class="caption">FFT of Filtered Derek</figcaption>
+            <img src="avg_into_me.jpg" alt="Harvesters">
+            <figcaption class="caption">Average onto my geometry</figcaption>
         </figure> 
         <figure>
-            <img src="hybrid_freq.png" alt="Harvesters">
-            <figcaption class="caption">FFT of Final Image</figcaption>
+            <img src="me_match_po.png" alt="Harvesters">
+            <figcaption class="caption">Me</figcaption>
+        </figure> 
+        <figure>
+            <img src="me_into_avg.jpg" alt="Harvesters">
+            <figcaption class="caption">Me onto average geometry</figcaption>
         </figure> 
     </div>
     <h2>2.3/4 (with bells and whistles)</h2>
