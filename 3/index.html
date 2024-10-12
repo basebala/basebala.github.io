@@ -102,41 +102,26 @@
             <div class="info">Triangulated image of LeBron James.</div>
         </figure>
     </div>
-    <h2>1.2</h2>
+    <h2>Part 2</h2>
     <div class="description">
-        <p>There were a few primary differences that I noted between the results of applying the Gaussian filter prior to doing the binarized gradient magnitude computation and not applying the filter. One difference was that with the Gaussian filter, edges were a lot more pronounced. Another major difference was there was a lot less noise when the Gaussian filter was applied. Moreover, the edges displayed best with a lower threshold when the Gaussian filter was used. In addition, I also tried created derivative of Gaussian (DoG) filters, an approach for which the original image was convoluted with combined Gaussian/dx and Gaussian/dy filters. This led to the exact same result as when the Gaussian was applied prior to the derivative filters, which is aligned with the theorem discussed in class.</p>
+        <p>The next step for me was to compute the midway image between myself and LeBron. To do this, I began by computing the average shape using the triangulation points corresponding to each other from each image and averaging them. After taking the Delaunay triangulation of this, I calculated the inverse of the affine transformation matrix between the original triangle in each image and the corresponding triangle in this average shape. I used polygon to then obtain all the pixels in each triangle and do interpolation using RegularGridInterpolator (Scipy). I also cross-dissolved the warped images, taking half of each and adding (for each pixel) to obtain this midway image.</p>
     </div>
     <div class="image-grid">
         <figure>
-            <img src="df_x_gaussian.png" alt="Cathedral">
-            <figcaption class="caption">X Gradients with Gaussian</figcaption>
-            <div class="info">Grayscale image of x gradients after Gaussian filter.</div>
+            <img src="180_p3_image_me.jpg" alt="Cathedral">
+            <figcaption class="caption">Me</figcaption>
+            <div class="info">Plain image of me</div>
         </figure>
         <figure>
-            <img src="df_y_gaussian.png" alt="Church">
+            <img src="180_p3_image_bron.jpg" alt="Church">
             <figcaption class="caption">Y Gradients</figcaption>
             <div class="info">Grayscale image of y gradients after Gaussian filter.</div>
         </figure>
         <figure>
-            <img src="gradient_mag_gaussian.jpg" alt="Emir">
-            <figcaption class="caption">Gradient Magnitude</figcaption>
-            <div class="info">Gradient magnitude image using both x and y after Gaussian filter.</div>
+            <img src="mix0.5.jpg" alt="Emir">
+            <figcaption class="caption">Midway</figcaption>
+            <div class="info">Warped and cross-dissolved image of myself and LeBron, with warping and dissolving constants of .5 each.</div>
         </figure>
-        <figure>
-            <img src="binarized_mag_gaussian.jpg" alt="Harvesters">
-            <figcaption class="caption">Binarized Magnitude</figcaption>
-            <div class="info">Binarized version of gradient magnitude image, threshold .55 after Gaussian filter</div>
-        </figure>   
-        <figure>
-            <img src="gradient_mag_gaussian_conv.jpg" alt="Emir">
-            <figcaption class="caption">Gradient Magnitude DoG</figcaption>
-            <div class="info">Gradient magnitude image using both x and y after DoG filter.</div>
-        </figure>
-        <figure>
-            <img src="binarized_mag_gaussian_conv.jpg" alt="Harvesters">
-            <figcaption class="caption">Binarized Magnitude DoG</figcaption>
-            <div class="info">Binarized version of gradient magnitude image, threshold .55 after DoG filter</div>
-        </figure> 
     </div>
     <h2>2.1</h2>
     <div class="description">
