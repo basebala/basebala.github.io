@@ -57,6 +57,34 @@
             font-size: .9em;
             color: #003366;
         }
+
+        .image-grid2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .image-grid2 img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: block;
+        }
+        .image-grid2 .caption {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 1.5em;
+            color: #003366;
+        }
+        .image-grid2 .info {
+            text-align: center;
+            margin-top: 5px;
+            font-size: .9em;
+            color: #003366;
+        }
         .extra-credit {
             max-width: 800px;
             margin: 40px auto;
@@ -85,170 +113,61 @@
     </style>
 </head>
 <body>
-    <h1>Project 3 - Face Morphing</h1>
-    <h2>Part 1</h2>
+    <h1>Project 4 - Image Warping and Mosaicing</h1>
+    <h2>Pictures, Homographies, and Warping</h2>
     <div class="description">
-        <p>I began by cropping and rescaling the images of myself and LeBron so that they would have identical dimensions. I then proceeded to use an online tool to choose a collection of points (31) that matched so that I could produce the warping shapes. This included the four corners of each image. I then took the mean of corresponding points and computed Delaunay triangulation using SciPy.</p>
+        <p>For this part, I first wrote the functioni computeH which would take in the set of corresponding points between the two images and compute the homography matrix to transform one into the other. I then created the warp function, which would initially warp the corners to determine the output shape and shift the warped image accordingly. I would then apply the homography to all points in the original image and finally output the warped image, the translation matrix, and the points that were transformed through the combined translation/homography.</p>
+    </div>
+    <h2>Rectification</h2>
+    <div class="description">
+        <p>Here, I used my warp function to warp images of bowling pins (from fowling) and a TV with Federer into rectangles. My warp function included an optional result shape parameter to accomplish this. I've attached the images and the corresponding rectifications here.</p>
     </div>
     <div class="image-grid">
         <figure>
-            <img src="me_triangle.png" alt="Cathedral">
-            <figcaption class="caption">Me</figcaption>
-            <div class="info">Triangulated image of me.</div>
+            <img src="federer.jpg" alt="Cathedral">
+            <div class="info">Federer Original</div>
         </figure>
         <figure>
-            <img src="lebron_triangle.png" alt="Church">
-            <figcaption class="caption">Goat</figcaption>
-            <div class="info">Triangulated image of LeBron James.</div>
-        </figure>
-    </div>
-    <h2>Part 2</h2>
-    <div class="description">
-        <p>The next step for me was to compute the midway image between myself and LeBron. To do this, I began by computing the average shape using the triangulation points corresponding to each other from each image and averaging them. After taking the Delaunay triangulation of this, I calculated the inverse of the affine transformation matrix between the original triangle in each image and the corresponding triangle in this average shape. I used polygon to then obtain all the pixels in each triangle and do interpolation using RegularGridInterpolator (Scipy). I also cross-dissolved the warped images, taking half of each and adding (for each pixel) to obtain this midway image.</p>
-    </div>
-    <div class="image-grid">
-        <figure>
-            <img src="180_p3_image_me.png" alt="Cathedral">
-            <figcaption class="caption">Me</figcaption>
-            <div class="info">Plain image of me</div>
+            <img src="rect_federer.png" alt="Cathedral">
+            <div class="info">Federer Rectangle</div>
         </figure>
         <figure>
-            <img src="180_p3_image_bron.jpg" alt="Church">
-            <figcaption class="caption">Goat</figcaption>
-            <div class="info">Plain image of LeBron</div>
+            <img src="new_pins.jpg" alt="Cathedral">
+            <div class="info">Bowling Original</div>
         </figure>
         <figure>
-            <img src="mix0.5.jpg" alt="Emir">
-            <figcaption class="caption">Midway</figcaption>
-            <div class="info">Warped and cross-dissolved image of myself and LeBron, with warping and dissolving constants of .5 each.</div>
-        </figure>
-    </div>
-    <h2>Part 3</h2>
-    <div class="description">
-        <p>I applied what I did in part 2, now instead of using strictly .5 as the warping/dissolving constant I used a range of values between 0 and 1. I used exactly 45 values, inclusive of 0 and 1 (np.linspace helped here). I then created a GIF file which shows the morphing from myself to LeBron.</p>
-    </div>
-    <div class="image-grid">
-        <figure>
-            <img src="output.gif" alt="Cathedral">
-            <figcaption class="caption">GIF</figcaption>
-            <div class="info">45 distinct values of t including 0 and 1 in that range.</div>
-        </figure>
-    </div>
-    <h2>Part 4</h2>
-    <div class="description">
-        <p>For this part, I used the FEI face database. In particular, I used the A images (100). I parsed through each of the text files for points to obtain corresponding keypoints for each image and averaged to get the average shape. I then morphed a few of the images into this shape (selection shown below). I also morphed all the images into this shape and took the average to obtain the average face. Finally, I morphed my own face into this average shape, and taking the geometry of my own face, morphed the average face from the dataset into mine.</p>
-    </div>
-    <div class="image-grid">
-        <figure>
-            <img src="1a.jpg" alt="Cathedral">
-            <figcaption class="caption">Person 1A</figcaption>
-        </figure>
-        <figure>
-            <img src="first_into_avg.jpg" alt="Cathedral">
-            <figcaption class="caption">Person 1A (morphed)</figcaption>
-        </figure>
-        <figure>
-            <img src="2a.jpg" alt="Cathedral">
-            <figcaption class="caption">Person 2A</figcaption>
-        </figure>
-        <figure>
-            <img src="first_into_avg_2a.jpg" alt="Church">
-            <figcaption class="caption">Person 2A (morphed)</figcaption>
-        </figure>
-        <figure>
-            <img src="3a.jpg" alt="Emir">
-            <figcaption class="caption">Person 3A</figcaption>
-        </figure>
-        <figure>
-            <img src="first_into_avg_3a.jpg" alt="Harvesters">
-            <figcaption class="caption">Person 3A (morphed)</figcaption>
-        </figure>   
-        <figure>
-            <img src="4a.jpg" alt="Emir">
-            <figcaption class="caption">Person 4A</figcaption>
-        </figure>
-        <figure>
-            <img src="first_into_avg_4a.jpg" alt="Harvesters">
-            <figcaption class="caption">Person 4A (morphed)</figcaption>
-        </figure> 
-        <figure>
-            <img src="all_faces_averaged.jpg" alt="Emir">
-            <figcaption class="caption">Average of all</figcaption>
-        </figure>
-        <figure>
-            <img src="avg_into_me.jpg" alt="Harvesters">
-            <figcaption class="caption">Average onto my geometry</figcaption>
-        </figure> 
-        <figure>
-            <img src="me_match_po.png" alt="Harvesters">
-            <figcaption class="caption">Me</figcaption>
-        </figure> 
-        <figure>
-            <img src="me_into_avg.jpg" alt="Harvesters">
-            <figcaption class="caption">Me onto average geometry</figcaption>
-        </figure> 
-    </div>
-    <h2>Part 5</h2>
-    <div class="description">
-        <p>Here I used alpha values of -1 and 2 to exaggerate both my features and the population's features, using my face (where 0 is my shape and 1 is the population average shape).</p>
-    </div>
-    <div class="image-grid">
-        <figure>
-            <img src="alpha_neg_1.jpg" alt="Cathedral">
-            <figcaption class="caption">Alpha = -1</figcaption>
-            <div class="info">Exaggerating my own features.</div>
-        </figure>
-        <figure>
-            <img src="alpha_pos_2.jpg" alt="Cathedral">
-            <figcaption class="caption">Alpha = 2</figcaption>
-            <div class="info">Exaggerating population features.</div>
+            <img src="rect_bowling.png" alt="Cathedral">
+            <div class="info">Bowling Rectangle</div>
         </figure>
     </div>
     <h2>Bells and Whistles 1</h2>
     <div class="description">
-        <p>Here I morphed myself onto the average Chinese male face taken from <a href="https://pmsol3.wordpress.com/wp-content/uploads/2009/08/chineseaverageman.jpg">here.</a> I created images for just dissolving, warping, and both (all t = .5).</p>
+        <p>Here I created a function to build the mosaic from two images and did this for three different scenes: SF lunar new year, a bedroom, and sushi. I initially warped one image onto the other and created a blank canvas. I then found the best displacement between the two images and offset the warped image by this displacement. Finally, I put both canvases on each other to create the final canvas, averaging points that were in both images.</p>
     </div>
     <div class="image-grid">
         <figure>
-            <img src="chinese_man.jpg" alt="Cathedral">
-            <figcaption class="caption">Average Chinese Male Face</figcaption>
+            <img src="lunar_1.jpg" alt="Cathedral">
+            <figcaption class="caption">First Lunar</figcaption>
         </figure>
         <figure>
-            <img src="just_warp.jpg" alt="Cathedral">
-            <figcaption class="caption">Warping</figcaption>
+            <img src="lunar_2.jpg" alt="Cathedral">
+            <figcaption class="caption">Second Lunar</figcaption>
         </figure>
         <figure>
-            <img src="just_dissolve.jpg" alt="Cathedral">
-            <figcaption class="caption">Dissolving</figcaption>
+            <img src="lunar_mosaic.png" alt="Cathedral">
+            <figcaption class="caption">Lunar Mosaic</figcaption>
         </figure>
         <figure>
-            <img src="both.jpg" alt="Cathedral">
-            <figcaption class="caption">Dissolving and Warping</figcaption>
+            <img src="bed_first.jpg" alt="Cathedral">
+            <figcaption class="caption">First Bed</figcaption>
         </figure>
-    </div>
-    <h2>Bells and Whistles 2</h2>
-    <div class="description">
-        <p>Here I once again morphed myself onto the Chinese male face. However, this time I used cv2 to implement gradient blending. I used Sobel to differentiate the images and blended together the gradients, creating a total of 30 frames for a GIF below.</p>
-    </div>
-    <div class="image-grid">
         <figure>
-            <img src="gradient_blend.gif" alt="Cathedral">
-            <figcaption class="caption">Me onto Chinese Man - Gradient</figcaption>
+            <img src="bed_second.jpg" alt="Cathedral">
+            <figcaption class="caption">Second Bed</figcaption>
         </figure>
-    </div>
-    <h2>Bells and Whistles 3</h2>
-    <div class="description">
-        <p>Here I morphed together a few different popular NBA players, mostly from the Los Angeles Lakers. I added 'All of the Lights' by Kanye West and others to form a music video, inspired from the video game 'NBA 2K14'. Enjoy! <a href="https://www.veed.io/view/aa820c8e-2ea6-49db-8ffd-f5cad1ec469b?panel=share">Link</a></p>
-    </div>
-    <iframe width="560" height="315" src="https://drive.google.com/file/d/1nj74-MQKrc46SfAtSNeMyP7vGGCHiqkR/view?usp=sharing" frameborder="0" allowfullscreen></iframe>
-    <h2>Bells and Whistles 4</h2>
-    <div class="description">
-        <p>This time I chose to try pixelation instead for morphing two images (Bronny and LeBron). Results are below.</p>
-    </div>
-    <div class="image-grid">
         <figure>
-            <img src="morphing_animation.gif" alt="Cathedral">
-            <figcaption class="caption">Bronny/LeBron</figcaption>
+            <img src="bed_mosaic.jpg" alt="Cathedral">
+            <figcaption class="caption">Bed Mosaic</figcaption>
         </figure>
     </div>
 </body>
