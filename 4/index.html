@@ -182,5 +182,33 @@
             <figcaption class="caption">Sushi Mosaic</figcaption>
         </figure>
     </div>
+    <h2>Harris Corner Detection</h2>
+    <div class="description">
+        <p>I used the provided function in the project spec for detecting corners with Harris. I have shown a couple images that I used for automatic keypoint detection and blending with all harris corners below.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="lunar_1_harris.png" alt="Cathedral">
+            <div class="info">Lunar Harris 1</div>
+        </figure>
+        <figure>
+            <img src="lunar_2_harris.png" alt="Cathedral">
+            <div class="info">Lunar Harris 2</div>
+        </figure>
+    </div>
+    <h2>ANMS</h2>
+    <div class="description">
+        <p>I used the dist2 function provided for ANMS to compute distances between keypoints chosen by Harris. I used a c_robust value of 1 to ensure that I didn't have neighbors that were both included as keypoints. I have displayed here a couple images that I used. For the most part, I took the top 100 by minimum radius for ANMS.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="lunar_1_anms.png" alt="Cathedral">
+            <div class="info">Lunar ANMS 1</div>
+        </figure>
+        <figure>
+            <img src="lunar_2_anms.png" alt="Cathedral">
+            <div class="info">Lunar ANMS 2</div>
+        </figure>
+    </div>
 </body>
 </html>
