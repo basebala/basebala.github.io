@@ -210,5 +210,59 @@
             <div class="info">Lunar ANMS 2</div>
         </figure>
     </div>
+    <h2>Final Images</h2>
+    <div class="description">
+        <p>I created the features with normalization and flattening, using a 40x40 grid around keypoints (downsized by scale of 5). I then did automatic feature matching, using threshold of .7 for NN and threshold of 3.5 for inliers. Finally, after computing the best homography with 4-point RANSAC, I used this and made a call to my mosaic function from 4A to create final images as displayed below. Furthermore, I displayed the manually computed mosaics (manually created keypoints) below the automatics for reference.</p>
+    </div>
+    <div class="image-grid2">
+        <figure>
+            <img src="lunar_1.jpg" alt="Cathedral">
+            <figcaption class="caption">First Lunar</figcaption>
+        </figure>
+        <figure>
+            <img src="lunar_2.jpg" alt="Cathedral">
+            <figcaption class="caption">Second Lunar</figcaption>
+        </figure>
+        <figure>
+            <img src="auto_lunar_mosaic.png" alt="Cathedral">
+            <figcaption class="caption">Lunar Auto Mosaic</figcaption>
+        </figure>
+        <figure>
+            <img src="bed_first.jpg" alt="Cathedral">
+            <figcaption class="caption">First Bed</figcaption>
+        </figure>
+        <figure>
+            <img src="bed_second.jpg" alt="Cathedral">
+            <figcaption class="caption">Second Bed</figcaption>
+        </figure>
+        <figure>
+            <img src="auto_bed_mosaic.png" alt="Cathedral">
+            <figcaption class="caption">Bed Auto Mosaic</figcaption>
+        </figure>
+        <figure>
+            <img src="vlsb_1.jpg" alt="Cathedral">
+            <figcaption class="caption">First VLSB</figcaption>
+        </figure>
+        <figure>
+            <img src="vlsb_2.jpg" alt="Cathedral">
+            <figcaption class="caption">Second VLSB</figcaption>
+        </figure>
+        <figure>
+            <img src="auto_vlsb_mosaic.png" alt="Cathedral">
+            <figcaption class="caption">VLSB Auto Mosaic</figcaption>
+        </figure>
+        <figure>
+            <img src="lunar_mosaic.jpg" alt="Cathedral">
+            <figcaption class="caption">Manual Lunar</figcaption>
+        </figure>
+        <figure>
+            <img src="bed_mosaic.jpg" alt="Cathedral">
+            <figcaption class="caption">Manual Bed</figcaption>
+        </figure>
+        <figure>
+            <img src="vlsb_mosaic.jpg" alt="Cathedral">
+            <figcaption class="caption">Manual VLSB</figcaption>
+        </figure>
+    </div>
 </body>
 </html>
