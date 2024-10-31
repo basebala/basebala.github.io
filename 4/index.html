@@ -286,5 +286,27 @@
             <div class="info">Sushi with Rotation-Invariance</div>
         </figure>
     </div>
+    <h2>Bells and Whistles - Panorama</h2>
+    <div class="description">
+        <p>To create a panoramic image with automatic detection of image order, I used a current homography matrix which I updated at each step. To obtain which images to place in which order, I created a matching graph, through which feature strengths detected which images to place in which order. Finally, once this order was determined, the current homography loop would add each image onto the canvas until complete.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="pano_v_1.jpg" alt="Cathedral">
+            <div class="info">VLSB 1</div>
+        </figure>
+        <figure>
+            <img src="pano_v_2.jpg" alt="Cathedral">
+            <div class="info">VLSB 2</div>
+        </figure>
+        <figure>
+            <img src="pano_v_3.jpg" alt="Cathedral">
+            <div class="info">VLSB 3</div>
+        </figure>
+        <figure>
+            <img src="final_pano.jpg" alt="Cathedral">
+            <div class="info">Panoramic VLSB</div>
+        </figure>
+    </div>
 </body>
 </html>
