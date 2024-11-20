@@ -113,103 +113,125 @@
     </style>
 </head>
 <body>
-    <h1>Project 4 - Image Warping and Mosaicing</h1>
-    <h2>Pictures, Homographies, and Warping</h2>
+    <h1>Project 5 - Diffusion - Part A</h1>
+    <h2>Sampling from the Model</h2>
     <div class="description">
-        <p>For this part, I first wrote the functioni computeH which would take in the set of corresponding points between the two images and compute the homography matrix to transform one into the other. I then created the warp function, which would initially warp the corners to determine the output shape and shift the warped image accordingly. I would then apply the homography to all points in the original image and finally output the warped image, the translation matrix, and the points that were transformed through the combined translation/homography.</p>
-    </div>
-    <h2>Rectification</h2>
-    <div class="description">
-        <p>Here, I used my warp function to warp images of bowling pins (from fowling) and a TV with Federer into rectangles. My warp function included an optional result shape parameter to accomplish this. I've attached the images and the corresponding rectifications here.</p>
+        <p>For this part, I ran the model on the three prompts twice, with a different number of inference steps each time (20 and then 50). Outputs are displayed below, for the images as well as the upsampled images. The second set of images has slightly higher resolution than the first. All images are pretty accurate with respect to the prompt. The second oil painting seems more like an oil painting to me than the first, however. Also, I chose a seed of 180.</p>
     </div>
     <div class="image-grid">
         <figure>
-            <img src="federer.jpg" alt="Cathedral">
-            <div class="info">Federer Original</div>
+            <img src="p5_part1_0.png" alt="Cathedral">
+            <div class="info">20 Inference Steps</div>
         </figure>
         <figure>
-            <img src="rect_federer.png" alt="Cathedral">
-            <div class="info">Federer Rectangle</div>
-        </figure>
-        <figure>
-            <img src="new_pins.jpg" alt="Cathedral">
-            <div class="info">Bowling Original</div>
-        </figure>
-        <figure>
-            <img src="rect_bowling.png" alt="Cathedral">
-            <div class="info">Bowling Rectangle</div>
+            <img src="p5_part1_0_inf.png" alt="Cathedral">
+            <div class="info">50 Inference Steps</div>
         </figure>
     </div>
-    <h2>Blending Mosaics</h2>
+    <h2>Implementing the Forward Process</h2>
     <div class="description">
-        <p>Here I created a function to build the mosaic from two images and did this for three different scenes: SF lunar new year, a bedroom, and sushi. I initially warped one image onto the other and created a blank canvas. I then found the best displacement between the two images and offset the warped image by this displacement. Finally, I put both canvases on each other to create the final canvas, averaging points that were in both images.</p>
+        <p>Here, I implemented the forward function which takes in an image im and a timestep t as input to generate a noisy image. Here are the outputs of the test image (Campanile) with timesteps of 250, 500, and 750.</p>
     </div>
     <div class="image-grid2">
         <figure>
-            <img src="lunar_1.jpg" alt="Cathedral">
-            <figcaption class="caption">First Lunar</figcaption>
+            <img src="campanile_250.png" alt="Cathedral">
+            <div class="info">Campanile (250 noise level)</div>
         </figure>
         <figure>
-            <img src="lunar_2.jpg" alt="Cathedral">
-            <figcaption class="caption">Second Lunar</figcaption>
+            <img src="campanile_500.png" alt="Cathedral">
+            <div class="info">Campanile (500 noise level)</div>
         </figure>
         <figure>
-            <img src="lunar_mosaic.jpg" alt="Cathedral">
-            <figcaption class="caption">Lunar Mosaic</figcaption>
-        </figure>
-        <figure>
-            <img src="bed_first.jpg" alt="Cathedral">
-            <figcaption class="caption">First Bed</figcaption>
-        </figure>
-        <figure>
-            <img src="bed_second.jpg" alt="Cathedral">
-            <figcaption class="caption">Second Bed</figcaption>
-        </figure>
-        <figure>
-            <img src="bed_mosaic.jpg" alt="Cathedral">
-            <figcaption class="caption">Bed Mosaic</figcaption>
-        </figure>
-        <figure>
-            <img src="vlsb_1.jpg" alt="Cathedral">
-            <figcaption class="caption">VLSB 1</figcaption>
-        </figure>
-        <figure>
-            <img src="vlsb_2.jpg" alt="Cathedral">
-            <figcaption class="caption">VLSB 2</figcaption>
-        </figure>
-        <figure>
-            <img src="vlsb_mosaic.jpg" alt="Cathedral">
-            <figcaption class="caption">VLSB Mosaic</figcaption>
+            <img src="campanile_750.png" alt="Cathedral">
+            <div class="info">Campanile (750 noise level)</div>
         </figure>
     </div>
-    <h2>Harris Corner Detection</h2>
+    <h2>Classical Denoising</h2>
     <div class="description">
-        <p>I used the provided function in the project spec for detecting corners with Harris. I have shown a couple images that I used for automatic keypoint detection and blending with all harris corners below.</p>
+        <p>Here, I simply used Gaussian blur filtering to try and remove the noise. I have displayed the outputs for filtering the three noised images from the previous section below. I used parameters of 7, 13, and 17 respectively for the blurring.</p>
+    </div>
+    <div class="image-grid2">
+        <figure>
+            <img src="campanile_gauss_250.png" alt="Cathedral">
+            <div class="info">Filtered campanile (250 noise level)</div>
+        </figure>
+        <figure>
+            <img src="campanile_gauss_500.png" alt="Cathedral">
+            <div class="info">Filtered campanile (500 noise level)</div>
+        </figure>
+        <figure>
+            <img src="campanile_gauss_750.png" alt="Cathedral">
+            <div class="info">Filtered campanile (750 noise level)</div>
+        </figure>
+    </div>
+    <h2>One Step Denoising</h2>
+    <div class="description">
+        <p>Here, I implemented one step denoising and have displayed the outputs of this on the three noised images (250, 500, 750) below. Each set of three is the original image, noised, and denoised version side-by-side.</p>
+    </div>
+    <div class="image-grid2">
+        <figure>
+            <img src="campanile_3_250.png" alt="Cathedral">
+            <figcaption class="caption">250 Noise Set</figcaption>
+        </figure>
+        <figure>
+            <img src="campanile_3_500.png" alt="Cathedral">
+            <figcaption class="caption">500 Noise Set</figcaption>
+        </figure>
+        <figure>
+            <img src="campanile_3_750.png" alt="Cathedral">
+            <figcaption class="caption">750 Noise Set</figcaption>
+        </figure>
+    </div>
+    <h2>Iterative Denoising</h2>
+    <div class="description">
+        <p>I implemented iterative denoising here and have displayed below the results of every fifth loop of denoising, as well as the final results (final denoised image, one-step denoised, and noised image).</p>
     </div>
     <div class="image-grid">
         <figure>
-            <img src="lunar_1_harris.png" alt="Cathedral">
-            <div class="info">Lunar Harris 1</div>
+            <img src="iterative_loop_4.png" alt="Cathedral">
+            <div class="info">Loop 4</div>
         </figure>
         <figure>
-            <img src="lunar_2_harris.png" alt="Cathedral">
-            <div class="info">Lunar Harris 2</div>
+            <img src="iterative_loop_9.png" alt="Cathedral">
+            <div class="info">Loop 9</div>
+        </figure>
+        <figure>
+            <img src="iterative_loop_13.png" alt="Cathedral">
+            <div class="info">Loop 14</div>
+        </figure>
+        <figure>
+            <img src="iterative_loop_17.png" alt="Cathedral">
+            <div class="info">Loop 19</div>
+        </figure>
+        <figure>
+            <img src="final_iterative.png" alt="Cathedral">
+            <div class="info">Final Image</div>
+        </figure>
+        <figure>
+            <img src="one_step_iterative.png" alt="Cathedral">
+            <div class="info">One-Step Image</div>
+        </figure>
+        <figure>
+            <img src="noised_iterative.png" alt="Cathedral">
+            <div class="info">Noised Image</div>
         </figure>
     </div>
-    <h2>ANMS</h2>
+    <h2>Diffusion Model Sampling</h2>
     <div class="description">
-        <p>I used the dist2 function provided for ANMS to compute distances between keypoints chosen by Harris. I used a c_robust value of 1 to ensure that I didn't have neighbors that were both included as keypoints. I have displayed here a couple images that I used. For the most part, I took the top 100 by minimum radius for ANMS.</p>
+        <p>Here, I generated 5 high-quality images from scratch by using i_start = 0 and passing in random noise.</p>
     </div>
-    <div class="image-grid">
-        <figure>
-            <img src="lunar_1_anms.png" alt="Cathedral">
-            <div class="info">Lunar ANMS 1</div>
-        </figure>
-        <figure>
-            <img src="lunar_2_anms.png" alt="Cathedral">
-            <div class="info">Lunar ANMS 2</div>
-        </figure>
+    <figure>
+        <img src="5_high_quality.png" alt="Cathedral">
+        <div class="info">5 Generations</div>
+    </figure>
+    <h2>Classifier Free Guidance</h2>
+    <div class="description">
+        <p>Here, I implemented a function for iterative denoising but with CFG. I have attached 5 images of high-quality photos here.</p>
     </div>
+    <figure>
+        <img src="5_cfg.png" alt="Cathedral">
+        <div class="info">5 Generations</div>
+    </figure>
     <h2>Final Images</h2>
     <div class="description">
         <p>I created the features with normalization and flattening, using a 40x40 grid around keypoints (downsized by scale of 5). I then did automatic feature matching, using threshold of .7 for NN and threshold of 3.5 for inliers. Finally, after computing the best homography with 4-point RANSAC, I used this and made a call to my mosaic function from 4A to create final images as displayed below. Furthermore, I displayed the manually computed mosaics (manually created keypoints) below the automatics for reference.</p>
