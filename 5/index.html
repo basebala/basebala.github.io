@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 3 - Face Morphing</title>
+    <title>Project 5</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -232,124 +232,22 @@
         <img src="5_cfg.png" alt="Cathedral">
         <div class="info">5 Generations</div>
     </figure>
-    <h2>Final Images</h2>
+    <h2>Image to Image Translation</h2>
     <div class="description">
-        <p>I created the features with normalization and flattening, using a 40x40 grid around keypoints (downsized by scale of 5). I then did automatic feature matching, using threshold of .7 for NN and threshold of 3.5 for inliers. Finally, after computing the best homography with 4-point RANSAC, I used this and made a call to my mosaic function from 4A to create final images as displayed below. Furthermore, I displayed the manually computed mosaics (manually created keypoints) below the automatics for reference.</p>
+        <p>I created edits of the test image using different noise levels, using the iterative denoise cfg function for denoising. I also did this for two of my generated images.</p>
     </div>
     <div class="image-grid2">
         <figure>
-            <img src="lunar_1.jpg" alt="Cathedral">
-            <figcaption class="caption">First Lunar</figcaption>
+            <img src="test_translate.png" alt="Cathedral">
+            <figcaption class="caption">Campanile</figcaption>
         </figure>
         <figure>
-            <img src="lunar_2.jpg" alt="Cathedral">
-            <figcaption class="caption">Second Lunar</figcaption>
+            <img src="1_translate.png" alt="Cathedral">
+            <figcaption class="caption">Gen 1</figcaption>
         </figure>
         <figure>
-            <img src="auto_lunar_mosaic.jpg" alt="Cathedral">
-            <figcaption class="caption">Lunar Auto Mosaic</figcaption>
-        </figure>
-        <figure>
-            <img src="bed_first.jpg" alt="Cathedral">
-            <figcaption class="caption">First Bed</figcaption>
-        </figure>
-        <figure>
-            <img src="bed_second.jpg" alt="Cathedral">
-            <figcaption class="caption">Second Bed</figcaption>
-        </figure>
-        <figure>
-            <img src="auto_bed_mosaic.jpg" alt="Cathedral">
-            <figcaption class="caption">Bed Auto Mosaic</figcaption>
-        </figure>
-        <figure>
-            <img src="vlsb_1.jpg" alt="Cathedral">
-            <figcaption class="caption">First VLSB</figcaption>
-        </figure>
-        <figure>
-            <img src="vlsb_2.jpg" alt="Cathedral">
-            <figcaption class="caption">Second VLSB</figcaption>
-        </figure>
-        <figure>
-            <img src="auto_vlsb_mosaic.jpg" alt="Cathedral">
-            <figcaption class="caption">VLSB Auto Mosaic</figcaption>
-        </figure>
-        <figure>
-            <img src="lunar_mosaic.jpg" alt="Cathedral">
-            <figcaption class="caption">Manual Lunar</figcaption>
-        </figure>
-        <figure>
-            <img src="bed_mosaic.jpg" alt="Cathedral">
-            <figcaption class="caption">Manual Bed</figcaption>
-        </figure>
-        <figure>
-            <img src="vlsb_mosaic.jpg" alt="Cathedral">
-            <figcaption class="caption">Manual VLSB</figcaption>
-        </figure>
-    </div>
-    <h2>Bells and Whistles - Rotation Invariance</h2>
-    <div class="description">
-        <p>I used SIFT detection here to detect keypoints and then create features that were rotation invariant. Below I have displayed sushis, along with both normal blending of the sushis (my standard function) and blending with rotation-invariant features. With rotation-invariance, it is far better.</p>
-    </div>
-    <div class="image-grid">
-        <figure>
-            <img src="new_sushi.jpg" alt="Cathedral">
-            <div class="info">Sushi</div>
-        </figure>
-        <figure>
-            <img src="new_sushi_angle.jpg" alt="Cathedral">
-            <div class="info">Sushi Angle</div>
-        </figure>
-        <figure>
-            <img src="sushi_standard.jpg" alt="Cathedral">
-            <div class="info">Sushi without Rotation-Invariance</div>
-        </figure>
-        <figure>
-            <img src="rot_sushi.jpg" alt="Cathedral">
-            <div class="info">Sushi with Rotation-Invariance</div>
-        </figure>
-    </div>
-    <h2>Bells and Whistles - Panorama</h2>
-    <div class="description">
-        <p>To create a panoramic image with automatic detection of image order, I used a current homography matrix which I updated at each step. To obtain which images to place in which order, I created a matching graph, through which feature strengths detected which images to place in which order. Finally, once this order was determined, the current homography loop would add each image onto the canvas until complete.</p>
-    </div>
-    <div class="image-grid">
-        <figure>
-            <img src="pano_v_1.jpg" alt="Cathedral">
-            <div class="info">VLSB 1</div>
-        </figure>
-        <figure>
-            <img src="pano_v_2.jpg" alt="Cathedral">
-            <div class="info">VLSB 2</div>
-        </figure>
-        <figure>
-            <img src="pano_v_3.jpg" alt="Cathedral">
-            <div class="info">VLSB 3</div>
-        </figure>
-        <figure>
-            <img src="final_pano.jpg" alt="Cathedral">
-            <div class="info">Panoramic VLSB</div>
-        </figure>
-    </div>
-    <h2>Bells and Whistles 4A - Circle</h2>
-    <div class="description">
-        <p>I tried morphing images into a circular shape instead of a square. To do this, I created 10 equidistant points on a circle using basic trigonometry in Python. I then had the user choose 10 equidistant points using a circlfy.py file, for then morphing the shape into a circle. Here is a flower without this circular morph and with, as well as sushi bowl.</p>
-    </div>
-    <div class="image-grid">
-        <figure>
-            <img src="petaly_flower.jpg" alt="Cathedral">
-            <div class="info">Flower no circle</div>
-        </figure>
-        <figure>
-            <img src="circle_federer.jpg" alt="Cathedral">
-            <div class="info">Circle flower</div>
-        </figure>
-        <figure>
-            <img src="new_sushi_angle.jpg" alt="Cathedral">
-            <div class="info">Sushi without circle (bowl)</div>
-        </figure>
-        <figure>
-            <img src="circle_sushi.jpg" alt="Cathedral">
-            <div class="info">Circular sushi bowl</div>
+            <img src="2_translate.png" alt="Cathedral">
+            <figcaption class="caption">Gen 2</figcaption>
         </figure>
     </div>
 </body>
