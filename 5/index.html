@@ -322,5 +322,63 @@
             <figcaption class="caption">Man (Far) / Snowy Mountain (Close) </figcaption>
         </figure>
     </div>
+    <h1>Project 5 - Diffusion - Part B</h1>
+    <h2>Part 1 - Training a Single-Step Denoising UNet</h2>
+    <div class="description">
+        <p>In this part, I trained a single-step denoising UNet. I first implemented the UNet and then used it to train a denoiser. Once that was done, I did some out-of-dist testing to see the results of this denoiser on images of noise levels for which it was not trained.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="noisy_digits.png" alt="Cathedral">
+            <figcaption class="caption">Digits with noise levels 0, .2, .4, .5, .6, .8, 1</figcaption>
+        </figure>
+        <figure>
+            <img src="plot_p1.png" alt="Cathedral">
+            <figcaption class="caption">Plot of losses by batch.</figcaption>
+        </figure>
+        <figure>
+            <img src="p1_epoch1.png" alt="Cathedral">
+            <figcaption class="caption">Results of original image, noised image, and denoised image after 1 epoch</figcaption>
+        </figure>
+        <figure>
+            <img src="p1_epoch5.png" alt="Cathedral">
+            <figcaption class="caption">Results of original image, noised image, and denoised image after 5 epochs.</figcaption>
+        </figure>
+        <figure>
+            <img src="p1_diffnoise.png" alt="Cathedral">
+            <figcaption class="caption">Sample results on test set with varying out-of-distribution noise levels (0, .2, .4, .5, .6, .8, 1).</figcaption>
+        </figure>
+    </div>
+    <h2>Part 2 - Training a Diffusion Model</h2>
+    <div class="description">
+        <p>In this part, I trained different diffusion models. I did one that was time-conditioned and one that was class-conditioned as well. Results are below.</p>
+    </div>
+    <div class="image-grid2">
+        <figure>
+            <img src="epoch5_time.png" alt="Cathedral">
+            <figcaption class="caption">Generated Digits after 5 Epochs (Time-Conditioned)</figcaption>
+        </figure>
+        <figure>
+            <img src="epoch20_time.png" alt="Cathedral">
+            <figcaption class="caption">Generated Digits after 20 Epochs (Time-Conditioned)</figcaption>
+        </figure>
+        <figure>
+            <img src="plot_time.png" alt="Cathedral">
+            <figcaption class="caption">Plot of losses (Time-Conditioned)</figcaption>
+        </figure>
+        <figure>
+            <img src="epoch5_class.png" alt="Cathedral">
+            <figcaption class="caption">Generated Digits after 5 Epochs (Class-Conditioned)</figcaption>
+        </figure>
+        <figure>
+            <img src="epoch20_class.png" alt="Cathedral">
+            <figcaption class="caption">Generated Digits after 20 Epochs (Class-Conditioned)</figcaption>
+        </figure>
+        <figure>
+            <img src="plot_class.png" alt="Cathedral">
+            <figcaption class="caption">Plot of losses (Class-Conditioned)</figcaption>
+        </figure>
+    </div>
+    
 </body>
 </html>
