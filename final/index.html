@@ -116,7 +116,7 @@
     <h1>Final Project Part 1 - Gradient Domain Fusion</h1>
     <h2>Toy Problem</h2>
     <div class="description">
-        <p>For this part, the objective was to create an image similar to a target image, trying to minimize the sum-of-squared distances between gradients (differences between two adjacent pixels). I used a toy example of Woody and Buzz Lightyear in Gray. The images were very similar. The max error was very low: 0.0010002051356807207</p>
+        <p>For this part, the objective was to create an image similar to a target image, trying to minimize the sum-of-squared distances between gradients (differences between two adjacent pixels). I used a toy example of Woody and Buzz Lightyear in Gray. The images were very similar. The max error was very low: 0.0010002051356807207.</p>
     </div>
     <div class="image-grid">
         <figure>
@@ -130,8 +130,12 @@
     </div>
     <h2>Poisson Blending</h2>
     <div class="description">
-        <p>For this part, I implemented Poisson blending. The purpose was to blend in an object image (masked part) into a background image. For the constraints, I tried to match the gradients between new pixels and their four-neighbors with the source image (masked), so I implemented this as a linear equation. For any pixels on the border of the mask (with neighbors outside the mask), I instead tried to match the gradient between those pixels and the background image's corresponding pixel with the gradient from the source image.</p>
+        <p>For this part, I implemented Poisson blending. The purpose was to blend in an object image (masked part) into a background image. For the constraints, I tried to match the gradients between new pixels and their four-neighbors with the source image (masked), so I implemented this as a linear equation. For any pixels on the border of the mask (with neighbors outside the mask), I instead tried to match the gradient between those pixels and the background image's corresponding pixel with the gradient from the source image. The least-squares problem is as displayed below, where v is the new intensity values, s is from the source region, and t is from the target image (background image). N_i is the 4-neighborhood of pixel i, and S is the set of pixels within the mask.</p>
     </div>
+    <figure>
+            <img src="equation_poisson.png" alt="Cathedral">
+            <div class="info">Blending LSQR</div>
+        </figure>
     <div class="image-grid">
         <figure>
             <img src="penguin_1.png" alt="Cathedral">
@@ -152,8 +156,12 @@
     </div>
     <h2>Mixed Gradients</h2>
     <div class="description">
-        <p>Here, I applied the idea of mixed gradients. Instead of trying to match the gradient between the new pixel and its neighbor with that from the source image, I tried to match it with the gradient from either the source image or the target (background) image, depending on which one had a greater absolute value. Output is displayed</p>
+        <p>Here, I applied the idea of mixed gradients. Instead of trying to match the gradient between the new pixel and its neighbor with that from the source image, I tried to match it with the gradient from either the source image or the target (background) image, depending on which one had a greater absolute value. Output is displayed. The equation is also displayed, where d_ij is either s_i - s_j or t_i - t_j, depending on which has a larger absolute value.</p>
     </div>
+    <figure>
+            <img src="equation_mixed.png" alt="Cathedral">
+            <div class="info">Mixed LSQR</div>
+        </figure>
     <figure>
         <img src="penguin_5.png" alt="Cathedral">
         <div class="info">Mixed Gradient Blending</div>
