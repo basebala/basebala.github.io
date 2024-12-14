@@ -166,219 +166,65 @@
         <img src="penguin_5.png" alt="Cathedral">
         <div class="info">Mixed Gradient Blending</div>
     </figure>
-    <h2>One Step Denoising</h2>
+    <h1>Final Project Part 2 - Lightfield Camera</h1>
+    <h2>Depth Refocusing</h2>
     <div class="description">
-        <p>Here, I implemented one step denoising and have displayed the outputs of this on the three noised images (250, 500, 750) below. Each set of three is the original image, noised, and denoised version side-by-side.</p>
+        <p>In this part, I created images of different focus using the same dataset of 289 images. The idea was that each image is taken from a different camera CoP, and we want to average all of the images with different shifts. With positive shifts, the image would focus more in the foreground, whereas negative shifts would cause the image to appear more focused in the background. For the chessboard dataset, I did this for shifts of magnitude ranging from -1 to 1. My results are displayed below.</p>
     </div>
     <div class="image-grid2">
         <figure>
-            <img src="campanile_3_250.png" alt="Cathedral">
-            <figcaption class="caption">250 Noise Set</figcaption>
+            <img src="c_-.8.png" alt="Cathedral">
+            <figcaption class="caption">C = -.8</figcaption>
         </figure>
         <figure>
-            <img src="campanile_3_500.png" alt="Cathedral">
-            <figcaption class="caption">500 Noise Set</figcaption>
+            <img src="c_-.6.png" alt="Cathedral">
+            <figcaption class="caption">C = -.6</figcaption>
         </figure>
         <figure>
-            <img src="campanile_3_750.png" alt="Cathedral">
-            <figcaption class="caption">750 Noise Set</figcaption>
+            <img src="c_-.4.png" alt="Cathedral">
+            <figcaption class="caption">C = -.4</figcaption>
+        </figure>
+        <figure>
+            <img src="c_-.2.png" alt="Cathedral">
+            <figcaption class="caption">C = -.2</figcaption>
+        </figure>
+        <figure>
+            <img src="c_0.png" alt="Cathedral">
+            <figcaption class="caption">C = 0 (Unshifted)</figcaption>
+        </figure>
+        <figure>
+            <img src="c_.2.png" alt="Cathedral">
+            <figcaption class="caption">C = .2</figcaption>
+        </figure>
+        <figure>
+            <img src="c_.4.png" alt="Cathedral">
+            <figcaption class="caption">C = .4</figcaption>
+        </figure>
+        <figure>
+            <img src="c_.6.png" alt="Cathedral">
+            <figcaption class="caption">C = .6</figcaption>
+        </figure>
+        <figure>
+            <img src="c_.8.png" alt="Cathedral">
+            <figcaption class="caption">C = .8</figcaption>
         </figure>
     </div>
-    <h2>Iterative Denoising</h2>
+    <h2>Aperture Adjustment</h2>
     <div class="description">
-        <p>I implemented iterative denoising here and have displayed below the results of every fifth loop of denoising, as well as the final results (final denoised image, one-step denoised, and noised image).</p>
-    </div>
-    <div class="image-grid">
-        <figure>
-            <img src="iterative_loop_4.png" alt="Cathedral">
-            <div class="info">Loop 4</div>
-        </figure>
-        <figure>
-            <img src="iterative_loop_9.png" alt="Cathedral">
-            <div class="info">Loop 9</div>
-        </figure>
-        <figure>
-            <img src="iterative_loop_13.png" alt="Cathedral">
-            <div class="info">Loop 14</div>
-        </figure>
-        <figure>
-            <img src="iterative_loop_17.png" alt="Cathedral">
-            <div class="info">Loop 19</div>
-        </figure>
-        <figure>
-            <img src="final_iterative.png" alt="Cathedral">
-            <div class="info">Final Image</div>
-        </figure>
-        <figure>
-            <img src="one_step_iterative.png" alt="Cathedral">
-            <div class="info">One-Step Image</div>
-        </figure>
-        <figure>
-            <img src="noised_iterative.png" alt="Cathedral">
-            <div class="info">Noised Image</div>
-        </figure>
-    </div>
-    <h2>Diffusion Model Sampling</h2>
-    <div class="description">
-        <p>Here, I generated 5 high-quality images from scratch by using i_start = 0 and passing in random noise.</p>
-    </div>
-    <figure>
-        <img src="5_high_quality.png" alt="Cathedral">
-        <div class="info">5 Generations</div>
-    </figure>
-    <h2>Classifier Free Guidance</h2>
-    <div class="description">
-        <p>Here, I implemented a function for iterative denoising but with CFG. I have attached 5 images of high-quality photos here.</p>
-    </div>
-    <figure>
-        <img src="5_cfg.png" alt="Cathedral">
-        <div class="info">5 Generations</div>
-    </figure>
-    <h2>Image to Image Translation</h2>
-    <div class="description">
-        <p>I created edits of the test image using different noise levels, using the iterative denoise cfg function for denoising. I also did this for two of my generated images.</p>
+        <p>For this part, I used varying numbers of images taken around the center image (8, 8). I tried this for the single image, the average of a 3x3 box around it, 5x5, all the way up to 17x17 (entire dataset). I also incorporated the depth refocus (shifting) before averaging to alter the focus.</p>
     </div>
     <div class="image-grid2">
         <figure>
-            <img src="test_translate.png" alt="Cathedral">
-            <figcaption class="caption">Campanile</figcaption>
+            <img src="0.png" alt="Cathedral">
+            <figcaption class="caption">1x1 (c = .2)</figcaption>
         </figure>
         <figure>
-            <img src="1_translate.png" alt="Cathedral">
-            <figcaption class="caption">Gen 1</figcaption>
+            <img src="4.png" alt="Cathedral">
+            <figcaption class="caption">9x9 (c = .2)</figcaption>
         </figure>
         <figure>
-            <img src="2_translate.png" alt="Cathedral">
-            <figcaption class="caption">Gen 2</figcaption>
-        </figure>
-    </div>
-    <h2>Editing hand-drawn and web images</h2>
-    <div class="description">
-        <p>Here I again did image-to-image translation, but with hand drawn and web images as shown below.</p>
-    </div>
-    <div class="image-grid2">
-        <figure>
-            <img src="avocado_d.png" alt="Cathedral">
-            <figcaption class="caption">Web Avocado</figcaption>
-        </figure>
-        <figure>
-            <img src="om_d.png" alt="Cathedral">
-            <figcaption class="caption">Hand Drawn Om</figcaption>
-        </figure>
-        <figure>
-            <img src="smile_d.png" alt="Cathedral">
-            <figcaption class="caption">Hand Drawn Smile</figcaption>
-        </figure>
-    </div>
-    <h2>Inpainting</h2>
-    <div class="description">
-        <p>Here I used a mask to create new content in part of the image. I did this for three images and used two different masks. The last two have my own custom mask which changes the center.</p>
-    </div>
-    <div class="image-grid2">
-        <figure>
-            <img src="inpaint_1.png" alt="Cathedral">
-            <figcaption class="caption">Campanile</figcaption>
-        </figure>
-        <figure>
-            <img src="inpaint_2.png" alt="Cathedral">
-            <figcaption class="caption">Avocado</figcaption>
-        </figure>
-        <figure>
-            <img src="inpaint_3.png" alt="Cathedral">
-            <figcaption class="caption">Cloud</figcaption>
-        </figure>
-    </div>
-    <h2>Visual Anagrams</h2>
-    <div class="description">
-        <p>Here I generated three images that look like one image normally and another when viewed upside-down.</p>
-    </div>
-    <div class="image-grid2">
-        <figure>
-            <img src="anagram_1.png" alt="Cathedral">
-            <figcaption class="caption">Fire / Old Man</figcaption>
-        </figure>
-        <figure>
-            <img src="anagram_2.png" alt="Cathedral">
-            <figcaption class="caption">Barista / Dog</figcaption>
-        </figure>
-        <figure>
-            <img src="anagram_3.png" alt="Cathedral">
-            <figcaption class="caption">Coast / Pencil</figcaption>
-        </figure>
-    </div>
-    <h2>Hybrid Images</h2>
-    <div class="description">
-        <p>Here I generated three images that look like one image up-close and another when viewed from far away.</p>
-    </div>
-    <div class="image-grid2">
-        <figure>
-            <img src="hybrid_1.png" alt="Cathedral">
-            <figcaption class="caption">Skull (Far) / Waterfall (Close) </figcaption>
-        </figure>
-        <figure>
-            <img src="hybrid_2.png" alt="Cathedral">
-            <figcaption class="caption">Coast (Far) / Dog (Close) </figcaption>
-        </figure>
-        <figure>
-            <img src="hybrid_3.png" alt="Cathedral">
-            <figcaption class="caption">Man (Far) / Snowy Mountain (Close) </figcaption>
-        </figure>
-    </div>
-    <h1>Project 5 - Diffusion - Part B</h1>
-    <h2>Part 1 - Training a Single-Step Denoising UNet</h2>
-    <div class="description">
-        <p>In this part, I trained a single-step denoising UNet. I first implemented the UNet and then used it to train a denoiser. Once that was done, I did some out-of-dist testing to see the results of this denoiser on images of noise levels for which it was not trained.</p>
-    </div>
-    <div class="image-grid">
-        <figure>
-            <img src="noisy_digits.png" alt="Cathedral">
-            <figcaption class="caption">Digits with noise levels 0, .2, .4, .5, .6, .8, 1</figcaption>
-        </figure>
-        <figure>
-            <img src="plot_p1.png" alt="Cathedral">
-            <figcaption class="caption">Plot of losses by batch.</figcaption>
-        </figure>
-        <figure>
-            <img src="p1_epoch1.png" alt="Cathedral">
-            <figcaption class="caption">Results of original image, noised image, and denoised image after 1 epoch</figcaption>
-        </figure>
-        <figure>
-            <img src="p1_epoch5.png" alt="Cathedral">
-            <figcaption class="caption">Results of original image, noised image, and denoised image after 5 epochs.</figcaption>
-        </figure>
-        <figure>
-            <img src="p1_diffnoise.png" alt="Cathedral">
-            <figcaption class="caption">Sample results on test set with varying out-of-distribution noise levels (0, .2, .4, .5, .6, .8, 1).</figcaption>
-        </figure>
-    </div>
-    <h2>Part 2 - Training a Diffusion Model</h2>
-    <div class="description">
-        <p>In this part, I trained different diffusion models. I did one that was time-conditioned and one that was class-conditioned as well. Results are below.</p>
-    </div>
-    <div class="image-grid2">
-        <figure>
-            <img src="epoch5_time.png" alt="Cathedral">
-            <figcaption class="caption">Generated Digits after 5 Epochs (Time-Conditioned)</figcaption>
-        </figure>
-        <figure>
-            <img src="epoch20_time.png" alt="Cathedral">
-            <figcaption class="caption">Generated Digits after 20 Epochs (Time-Conditioned)</figcaption>
-        </figure>
-        <figure>
-            <img src="plot_time.png" alt="Cathedral">
-            <figcaption class="caption">Plot of losses (Time-Conditioned)</figcaption>
-        </figure>
-        <figure>
-            <img src="epoch5_class.png" alt="Cathedral">
-            <figcaption class="caption">Generated Digits after 5 Epochs (Class-Conditioned)</figcaption>
-        </figure>
-        <figure>
-            <img src="epoch20_class.png" alt="Cathedral">
-            <figcaption class="caption">Generated Digits after 20 Epochs (Class-Conditioned)</figcaption>
-        </figure>
-        <figure>
-            <img src="plot_class.png" alt="Cathedral">
-            <figcaption class="caption">Plot of losses (Class-Conditioned)</figcaption>
+            <img src="8.png" alt="Cathedral">
+            <figcaption class="caption">17x17 (c = .2)</figcaption>
         </figure>
     </div>
     <h2>Bells and Whistles - CS 180 Logo</h2>
