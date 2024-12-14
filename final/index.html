@@ -166,6 +166,20 @@
         <img src="penguin_5.png" alt="Cathedral">
         <div class="info">Mixed Gradient Blending</div>
     </figure>
+    <h2>Cartoon Images</h2>
+    <div class="description">
+        <p>Here, I attempted creating a cartoon-like effect on images. I started by computing the gradients and then using a binary threshold applied to the magnitude for edge enhancement. I used a bilateral filter to smooth the image while preserving edges, helping create the cartoon effect. I also clustered the colors using cv2.kmeans so the basis of colors is smaller. I then blended the created edge mask with the quantized colors image and displayed results below.</p>
+    </div>
+    <div class="image-grid">
+        <figure>
+            <img src="penguin-ec.png" alt="Cathedral">
+            <div class="info">Penguin Image with Cartoon</div>
+        </figure>
+        <figure>
+            <img src="other-ec.png" alt="Cathedral">
+            <div class="info">Penguin Chick with Cartoon</div>
+        </figure>
+    </div>
     <h1>Final Project Part 2 - Lightfield Camera</h1>
     <h2>Depth Refocusing</h2>
     <div class="description">
